@@ -1,22 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import * as yup from 'yup';
+
+import registerFormSchema from '../../validation/registerFormSchema'
 
 const initialFormValues = {
     name: '',
     username: '',
     password: '',
+    confirm: '',
     email: '',
     age: '',
     tos: false,
 }
 
-const inputTextFields = ["name", "username", "password", "confirm password", "email", "age"];
+let initialErrorValue;
+
+const inputTextFields = ["name", "username", "password", "confirm", "email", "age"];
 
 //ADD TOS CHECKBOX;
 
 export default function RegisterForm(props){
 
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [errorValue, setErrorValue] = useState(initialErrorValue);
+    const [submitDisabled, setSubmitDisabled] = useState(true);
     const [user, setUser] = useState({});
 
 
@@ -27,11 +35,13 @@ export default function RegisterForm(props){
     function onChange(event) {
         const {name, value} = event.target;
         updateValues(name, value);
+        validateInput(name, value);
     }
 
     function onCheckBoxChange(event){
         const {name, checked} = event.target;
         updateValues(name, checked);
+        validateInput(name, checked);
     }
     
     function onSubmit(event){
@@ -39,8 +49,20 @@ export default function RegisterForm(props){
         setUser(formValues)
     }
     
+    function validateInput(name, value){
+        yup.reach(registerFormSchema, name)
+            .validate(value)
+            .then(() => {
+                setErrorValue(initialErrorValue);
+            })
+            .catch(error => {
+                setSubmitDisabled(true);
+                setErrorValue(error.errors[0]);
+            })
+    }
+
     function createPlaceholderText(name){
-        if (name === "confirm password"){
+        if (name === "confirm"){
             return "Please confirm password..."
         }
         else
@@ -61,6 +83,7 @@ export default function RegisterForm(props){
             
     },[user])
 
+
     return (
         <form className="register-form" onSubmit={onSubmit}>
             {inputTextFields.map((item, ind) => {
@@ -74,7 +97,7 @@ export default function RegisterForm(props){
                 <input
                     id={item}
                     type='text'
-                    name={item.split}
+                    name={item}
                     value={formValues[item]}
                     onChange={onChange}
                     placeholder={createPlaceholderText(item)}
@@ -102,6 +125,7 @@ export default function RegisterForm(props){
                 >
                     Register an Account
                 </button>
+                {errorValue && <div style={{color: 'red'}}>{errorValue}</div>}
             </label>
         </form>
     )
