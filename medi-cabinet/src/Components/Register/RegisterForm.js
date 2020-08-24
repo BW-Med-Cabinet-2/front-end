@@ -10,7 +10,7 @@ const initialFormValues = {
     tos: false,
 }
 
-const inputTextFields = ["name", "username", "password", "email", "age"];
+const inputTextFields = ["name", "username", "password", "confirm password", "email", "age"];
 
 //ADD TOS CHECKBOX;
 
@@ -38,7 +38,17 @@ export default function RegisterForm(props){
         event.preventDefault();
         setUser(formValues)
     }
-        
+    
+    function createPlaceholderText(name){
+        if (name === "confirm password"){
+            return "Please confirm password..."
+        }
+        else
+        {
+            return `Enter ${name[0].toUpperCase()+name.slice(1)}...`
+        }
+    }
+
     useEffect(() => {
         axios.post("https://reqres.in/api/users", user)
             .then(response => {
@@ -57,14 +67,17 @@ export default function RegisterForm(props){
                 return (
             <label
                 key={`${item}-${ind}`}
-                htmlFor={item}> {item}
+                htmlFor={item}
+            > 
+                {item[0].toUpperCase()+item.slice(1)}
+
                 <input
                     id={item}
                     type='text'
-                    name={item}
+                    name={item.split}
                     value={formValues[item]}
                     onChange={onChange}
-                    placeholder={`Enter your ${item}...`}
+                    placeholder={createPlaceholderText(item)}
                 />
             </label>
              
