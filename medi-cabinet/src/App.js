@@ -1,12 +1,16 @@
 import React from 'react';
-import RegisterForm from './Components/Register/RegisterForm.js';
+import RegisterForm from './components/Register/RegisterForm';
+import NavBar from './components/NavBar'; 
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <RegisterForm />
+      <header>
+        <NavBar />
+        <RegisterForm />
+      </header>
     </div>
   );
 }
