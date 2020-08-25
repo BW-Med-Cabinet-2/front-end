@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RegisterForm from './Register/RegisterForm';
 import LoginForm from './Login/Login';
+import PrivateRoute from '../PrivateRoute'; 
 import {
     Button, 
     Modal, 

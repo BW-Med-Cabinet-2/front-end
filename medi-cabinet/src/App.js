@@ -1,10 +1,9 @@
 import React from 'react';
 import {Switch, Route, NavLink} from 'react-router-dom';
 
-import Cards from './components/Cards/Cards'
-import RegisterForm from './Components/Register/RegisterForm.js';
-import Login from './Components/Login/Login';
+import Cards from './Components/Cards/Cards'; 
 import NavBar from './Components/NavBar'; 
+import SearchForm from './Components/SearchForm';
 
 
 import './App.css';
@@ -14,9 +13,13 @@ function App() {
     <div className="App">
       <header>
         <NavBar />
-        {/* <SearchBar /> */}
-        <Cards />
       </header>
+      {/* Hero Image */}
+      <h1 id="helptext">Let's help find what you need</h1>
+      <div className="SearchForm">
+      <SearchForm />
+      {/* <Cards /> */}
+      </div>
     </div>
   );
 }

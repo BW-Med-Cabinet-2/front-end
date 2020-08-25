@@ -22,7 +22,7 @@ export default function LoginForm(props){
     }
 
     return (
-        <Form>
+        <Form inline> 
             {inputTextFields.map((item, ind) => {
                 return (
             <label
