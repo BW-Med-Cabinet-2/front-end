@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
 
@@ -14,7 +14,7 @@ const initialFormValues = {
     tos: false,
 }
 
-let initialErrorValue;
+let initialErrorValue = '';
 
 const inputTextFields = ["name", "username", "password", "confirm", "email", "age"];
 
@@ -50,6 +50,10 @@ export default function RegisterForm(props){
     }
     
     function validateInput(name, value){
+
+        // This is a hack. State refuses to update correctly otherwise.
+       
+
         yup.reach(registerFormSchema, name)
             .validate(value)
             .then(() => {
@@ -57,6 +61,7 @@ export default function RegisterForm(props){
             })
             .catch(error => {
                 setSubmitDisabled(true);
+                console.log(error);
                 setErrorValue(error.errors[0]);
             })
     }
@@ -83,6 +88,24 @@ export default function RegisterForm(props){
             
     },[user])
 
+    useEffect(() => {
+        // Hack to confirm password
+        let confirm = document.querySelector('.confirm');
+        let password = document.querySelector('.password');
+
+        registerFormSchema.isValid(formValues)
+            .then(valid => {
+                setSubmitDisabled(!valid);
+                if (confirm.value !== password.value && errorValue === ''){ // part of hack
+                    setErrorValue("Passwords must match.");
+                    return setSubmitDisabled(true);
+                }
+            })
+            .catch(error => {
+                setSubmitDisabled(false);
+            })
+    }, [formValues])
+
 
     return (
         <form className="register-form" onSubmit={onSubmit}>
@@ -96,6 +119,7 @@ export default function RegisterForm(props){
 
                 <input
                     id={item}
+                    className={item}
                     type='text'
                     name={item}
                     value={formValues[item]}
@@ -122,6 +146,7 @@ export default function RegisterForm(props){
                 <button
                     id='submit'
                     name='submit'
+                    disabled={submitDisabled}
                 >
                     Register an Account
                 </button>
