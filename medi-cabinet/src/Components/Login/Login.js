@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Form, Input } from 'reactstrap'; 
 import axios from "axios";
 import * as Yup from "yup";
 
@@ -21,13 +22,13 @@ export default function LoginForm(props){
     }
 
     return (
-        <form>
+        <Form>
             {inputTextFields.map((item, ind) => {
                 return (
             <label
                 key={`${item}-${ind}`}
                 htmlFor={item}> {item}
-                <input
+                <Input
                     id={item}
                     type='text'
                     name={item}
@@ -37,6 +38,6 @@ export default function LoginForm(props){
              </label>
                 )
             })}
-        </form>
+        </Form>
     )
 }
