@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Form, Input, Button } from 'reactstrap'; 
+import { Form, Input, Button, Label, FormGroup} from 'reactstrap'; 
 
 import axios from 'axios';
 import * as yup from 'yup';
@@ -101,7 +101,7 @@ export default function RegisterForm(props){
             <>
             <label
                 key={`${item}-${ind}`}
-                htmlFor={item}> {item}
+                htmlFor={item}> {item[0].toUpperCase()+item.slice(1)}{': '}
                 <Input
                     id={item}
                     className={item}
@@ -122,20 +122,20 @@ export default function RegisterForm(props){
                 setErrorValue={setErrorValue}
                 setSubmitDisabled={setSubmitDisabled}
             />
-                <br />
-            <label htmlFor='tos'>Terms and Conditions:
-                <Input
-                    id='tos'
-                    type='checkbox'
-                    name='tos'
-                    checked={formValues.tos}
-                    onChange={onCheckBoxChange}
-                >{' '}
+            <FormGroup check>
                 
-                </Input>
-            </label>
-            <br /> 
-            <label htmlFor='submit'>
+                    <Input
+                        id='tos'
+                        type='checkbox'
+                        name='tos'
+                        checked={formValues.tos}
+                        onChange={onCheckBoxChange}
+                    >
+                    Terms of Service
+                    </Input>
+                    <Label htmlFor='tos'> Terms of Service</Label>
+            </FormGroup>
+            
                 <Button
                     id='submit'
                     name='submit'
@@ -145,6 +145,5 @@ export default function RegisterForm(props){
                 </Button>
                 {errorValue && <div style= {{color: 'red'}}>{errorValue}</div>}
 
-            </label>
         </Form>
     )}

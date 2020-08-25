@@ -1,4 +1,5 @@
 import React from 'react';
+import Quiz from './components/Quiz/Quiz';
 import {Switch, Route, NavLink} from 'react-router-dom';
 
 import Cards from './Components/Cards/Cards'; 
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <header>
         <NavBar />
+        <Quiz />
       </header>
       <div className="homepage">
         <div className="hometext">

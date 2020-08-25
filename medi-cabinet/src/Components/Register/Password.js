@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { Form, Input, Button } from 'reactstrap'; 
 
+import { Form, Input, Button } from 'reactstrap'; 
 
 const inputTextFields = ["password", "confirm"];
 
@@ -10,7 +10,7 @@ function Password({onChange, formValues, setErrorValue, setSubmitDisabled}) {
 
 
     useEffect(() => {
-        if (formValues.password !== formValues.confirm){
+        if (formValues.password !== formValues.confirm || formValues.password === ''){
             setSubmitDisabled(true);
             setPasswordsAreEqual(false);
         }
