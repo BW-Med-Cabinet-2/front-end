@@ -102,6 +102,9 @@ h1 {
     h5, .col p {
       text-align: center;
     }
+    .heroImg{
+      background-position:left;
+    }
   }
       
 
