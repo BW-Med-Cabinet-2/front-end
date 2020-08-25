@@ -5,24 +5,18 @@ const inputTextFields = ["password", "confirm"];
 function Password({onChange, formValues, setErrorValue, setSubmitDisabled}) {
 
     let [passwordsAreEqual, setPasswordsAreEqual] = useState(false);
-    let [password, setPassword] = useState(formValues.password);
-    let [confirm, setConfirm] = useState(formValues.confirm);
+
 
     useEffect(() => {
-        if (password !== confirm){
+        if (formValues.password !== formValues.confirm){
             setSubmitDisabled(true);
+            setPasswordsAreEqual(false);
         }
         else {
             setSubmitDisabled(false);
         }
-    }, [password, confirm, setSubmitDisabled])
+    })
 
-    useEffect(() => {
-        if (formValues.confirm === formValues.password){
-            setPasswordsAreEqual(true);
-            setSubmitDisabled(false);
-        }
-    }, [formValues, setSubmitDisabled])
 
     useEffect(() => {
         if (!passwordsAreEqual){
@@ -31,11 +25,12 @@ function Password({onChange, formValues, setErrorValue, setSubmitDisabled}) {
         }
         else
         {
+            console.log(passwordsAreEqual);
             setErrorValue('');
             setSubmitDisabled(false)
         }
 
-    }, [formValues, passwordsAreEqual, setErrorValue, setSubmitDisabled])
+    }, [passwordsAreEqual, setErrorValue, setSubmitDisabled])
 
     function createPlaceholderText(name){
         if (name === "confirm"){
@@ -57,7 +52,7 @@ function Password({onChange, formValues, setErrorValue, setSubmitDisabled}) {
                 key={`${item}-${ind}`}
                 htmlFor={item}
             > 
-                {item[0].toUpperCase()+item.slice(1)}
+                {item[0].toUpperCase()+item.slice(1)}:
             </label>
                 <input
                     id={item}

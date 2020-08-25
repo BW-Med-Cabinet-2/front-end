@@ -7,6 +7,7 @@ import Password from './Password';
 
 import registerFormSchema from '../../validation/registerFormSchema'
 
+
 const initialFormValues = {
     name: '',
     username: '',
@@ -20,8 +21,6 @@ const initialFormValues = {
 let initialErrorValue;
 
 const inputTextFields = ["name", "email", "age", 'username'];
-
-//ADD TOS CHECKBOX;
 
 export default function RegisterForm(props){
 
@@ -134,7 +133,6 @@ export default function RegisterForm(props){
                 
                 </input>
             </label>
-
             <label htmlFor='submit'>
                 <button
                     id='submit'
@@ -143,8 +141,7 @@ export default function RegisterForm(props){
                 >
                     Register an Account
                 </button>
-                {errorValue && <div style= {{color: 'red'}}>Passwords Must Match</div> }
+                {errorValue && <div style= {{color: 'red'}}>{errorValue}</div>}
             </label>
         </Form>
-    )
-}
+    )}
