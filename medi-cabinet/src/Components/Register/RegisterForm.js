@@ -1,6 +1,8 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+
+import Password from './Password';
 
 import registerFormSchema from '../../validation/registerFormSchema'
 
@@ -14,9 +16,9 @@ const initialFormValues = {
     tos: false,
 }
 
-let initialErrorValue = '';
+let initialErrorValue;
 
-const inputTextFields = ["name", "username", "password", "confirm", "email", "age"];
+const inputTextFields = ["name", "email", "age", 'username'];
 
 //ADD TOS CHECKBOX;
 
@@ -25,19 +27,31 @@ export default function RegisterForm(props){
     const [formValues, setFormValues] = useState(initialFormValues);
     const [errorValue, setErrorValue] = useState(initialErrorValue);
     const [submitDisabled, setSubmitDisabled] = useState(true);
-    const [user, setUser] = useState({});
+    
+    useEffect(() => {
+
+        registerFormSchema.isValid(formValues)
+            .then(valid => {
+                setSubmitDisabled(!valid);
+     
+            })
+            .catch(error => {
+                setSubmitDisabled(true);
+            })
+    }, [formValues, errorValue])
+
 
 
     function updateValues(inputName, inputValue){
         setFormValues({...formValues, [inputName]: inputValue});
     }
-
+    
     function onChange(event) {
         const {name, value} = event.target;
         updateValues(name, value);
         validateInput(name, value);
     }
-
+    
     function onCheckBoxChange(event){
         const {name, checked} = event.target;
         updateValues(name, checked);
@@ -50,32 +64,21 @@ export default function RegisterForm(props){
     }
     
     function validateInput(name, value){
-
-        // This is a hack. State refuses to update correctly otherwise.
-       
-
+        
         yup.reach(registerFormSchema, name)
-            .validate(value)
-            .then(() => {
-                setErrorValue(initialErrorValue);
-            })
-            .catch(error => {
-                setSubmitDisabled(true);
-                console.log(error);
-                setErrorValue(error.errors[0]);
-            })
+        .validate(value)
+        .then(() => {
+            setErrorValue('');
+        })
+        .catch(error => {
+            setSubmitDisabled(true);
+            console.log(error);
+            setErrorValue(error.errors[0]);
+        })
     }
 
-    function createPlaceholderText(name){
-        if (name === "confirm"){
-            return "Please confirm password..."
-        }
-        else
-        {
-            return `Enter ${name[0].toUpperCase()+name.slice(1)}...`
-        }
-    }
-
+    const [user, setUser] = useState({});
+    
     useEffect(() => {
         axios.post("https://reqres.in/api/users", user)
             .then(response => {
@@ -87,24 +90,6 @@ export default function RegisterForm(props){
 
             
     },[user])
-
-    useEffect(() => {
-        // Hack to confirm password
-        let confirm = document.querySelector('.confirm');
-        let password = document.querySelector('.password');
-
-        registerFormSchema.isValid(formValues)
-            .then(valid => {
-                setSubmitDisabled(!valid);
-                if (confirm.value !== password.value && errorValue === ''){ // part of hack
-                    setErrorValue("Passwords must match.");
-                    return setSubmitDisabled(true);
-                }
-            })
-            .catch(error => {
-                setSubmitDisabled(true);
-            })
-    }, [formValues])
 
 
     return (
@@ -124,12 +109,19 @@ export default function RegisterForm(props){
                     name={item}
                     value={formValues[item]}
                     onChange={onChange}
-                    placeholder={createPlaceholderText(item)}
+                    placeholder={`Enter ${item[0].toUpperCase()+item.slice(1)}...`}
                 />
             </label>
              
                 )
             })}
+            <Password
+                onChange={onChange}
+                formValues={formValues}
+                setErrorValue={setErrorValue}
+                setSubmitDisabled={setSubmitDisabled}
+            />
+                
             <label htmlFor='tos'>Terms and Conditions:
                 <input
                     id='tos'
@@ -150,7 +142,7 @@ export default function RegisterForm(props){
                 >
                     Register an Account
                 </button>
-                {errorValue && <div style={{color: 'red'}}>{errorValue}</div>}
+                {errorValue && <div style= {{color: 'red'}}>Passwords Must Match</div> }
             </label>
         </form>
     )
