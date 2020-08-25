@@ -1,6 +1,8 @@
 import React from 'react';
 import NavBar from './components/NavBar'; 
-import Cards from './components/Cards/Cards'
+import Cards from './components/Cards/Cards';
+import Quiz from './components/Quiz/Quiz';
+
 import './App.css';
 
 function App() {
@@ -10,6 +12,7 @@ function App() {
         <NavBar />
         {/* <SearchBar /> */}
         <Cards />
+        <Quiz />
       </header>
     </div>
   );
