@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RegisterForm from './Register/RegisterForm';
+import LoginForm from './Login/Login';
 import {
     Button, 
     Modal, 
@@ -34,11 +35,21 @@ const NavBar = (props) => {
           <Nav className="mr-auto" navbar>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Profile
+                Click Here
               </DropdownToggle>
               <DropdownMenu left>
                 <DropdownItem>
-                  <Button color="info">Login 🔓</Button>
+                  <Button color="info" onClick={toggle}>Login 🔓</Button>{' '}
+                    <Modal isOpen={isOpen} toggle={toggle}>
+                      <ModalHeader toggle={toggle}>Login</ModalHeader>
+                          <ModalBody>
+                           <LoginForm />                                      
+                          </ModalBody>
+                      <ModalFooter>
+                        <Button color="warning" onClick={toggle}>Login</Button>{' '}
+                        <Button color="secondary" onClick={toggle}>Cancel</Button>
+                      </ModalFooter>
+                    </Modal>
                 </DropdownItem>
                 <DropdownItem>
                     <Button color="warning" onClick={toggle}>Register 📝</Button>
@@ -47,10 +58,10 @@ const NavBar = (props) => {
                                     <ModalBody>
                                         <RegisterForm />                                      
                                     </ModalBody>
-                                <ModalFooter>
+                            {/* <ModalFooter>
                                 <Button color="warning" onClick={toggle}>Register</Button>{' '}
                                 <Button color="secondary" onClick={toggle}>Cancel</Button>
-                            </ModalFooter>
+                            </ModalFooter> */}
                         </Modal>
                 </DropdownItem>
                 <DropdownItem>

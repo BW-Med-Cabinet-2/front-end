@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import Password from './Password';
 
 import registerFormSchema from '../../validation/registerFormSchema'
-import { Form, Input } from 'reactstrap'; 
+import { Form, Input, Button } from 'reactstrap'; 
 
 const initialFormValues = {
     name: '',
@@ -129,24 +129,24 @@ export default function RegisterForm(props){
             />
                 
             <label htmlFor='tos'>Terms and Conditions:
-                <input
+                <Input
                     id='tos'
                     type='checkbox'
                     name='tos'
                     checked={formValues.tos}
                     onChange={onCheckBoxChange}
-                >
+                >{' '}
                 
-                </input>
+                </Input>
             </label>
             <label htmlFor='submit'>
-                <button
+                <Button
                     id='submit'
                     name='submit'
                     disabled={submitDisabled}
                 >
                     Register an Account
-                </button>
+                </Button>
                 {errorValue && <div style= {{color: 'red'}}>Passwords Must Match</div> }
             </label>
         </Form>
