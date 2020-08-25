@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
+import { Form, Input } from 'reactstrap'; 
 
 const initialFormValues = {
     name: '',
 }
 
-const inputTextFields = ["name", "password", "email", "age", "test"];
+const inputTextFields = ["Name: ", "Password: ", "Email: ", "Age: ", "Test: "];
 
 export default function RegisterForm(props){
     
@@ -22,13 +23,14 @@ export default function RegisterForm(props){
 
 
     return (
-        <form>
+        <Form>
             {inputTextFields.map((item, ind) => {
                 return (
+            <>
             <label
                 key={`${item}-${ind}`}
                 htmlFor={item}> {item}
-                <input
+                <Input
                     id={item}
                     type='text'
                     name={item}
@@ -36,10 +38,12 @@ export default function RegisterForm(props){
                     onChange={onChange}
                 />
              </label>
+             <br></br>
+            </>
                 )
             })}
 
              
-        </form>
+        </Form>
     )
 }
