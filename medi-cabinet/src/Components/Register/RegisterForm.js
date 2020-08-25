@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
+import { Form, Input, Button } from 'reactstrap'; 
+
 import axios from 'axios';
 import * as yup from 'yup';
 
 import Password from './Password';
 
 import registerFormSchema from '../../validation/registerFormSchema'
-import { Form, Input, Button } from 'reactstrap'; 
+
 
 const initialFormValues = {
     name: '',
@@ -20,9 +22,6 @@ const initialFormValues = {
 let initialErrorValue;
 
 const inputTextFields = ["name", "email", "age", 'username'];
-
-//ADD TOS CHECKBOX;
-
 
 export default function RegisterForm(props){
 
@@ -95,18 +94,15 @@ export default function RegisterForm(props){
 
 
     return (
-        <Form className="register-form" onSubmit={onSubmit}>
+
+        <Form onSubmit={onSubmit} className='register-form'>
             {inputTextFields.map((item, ind) => {
                 return (
             <>
             <label
                 key={`${item}-${ind}`}
-                htmlFor={item}
-            > 
-                {item[0].toUpperCase()+item.slice(1)}
-
+                htmlFor={item}> {item}
                 <Input
-
                     id={item}
                     className={item}
                     type='text'
@@ -115,7 +111,6 @@ export default function RegisterForm(props){
                     onChange={onChange}
                     placeholder={`Enter ${item[0].toUpperCase()+item.slice(1)}...`}
                 />
-
              </label>
              <br></br>
             </>
@@ -147,9 +142,8 @@ export default function RegisterForm(props){
                 >
                     Register an Account
                 </Button>
-                {errorValue && <div style= {{color: 'red'}}>Passwords Must Match</div> }
+                {errorValue && <div style= {{color: 'red'}}>{errorValue}</div>}
+
             </label>
         </Form>
-
-    )
-}
+    )}
