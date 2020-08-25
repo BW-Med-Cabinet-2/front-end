@@ -42,11 +42,12 @@ nav {
     justify-content: space-between;
     width: 100%;
   }
-  .col {
-    flex: 1;
+ 
+  .col{
+      padding:4% 4%;
   }
 .smaller{
-    width: 30%;
+    width: 60%;
     border-radius: 50%;
 }
 
