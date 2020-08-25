@@ -9,9 +9,11 @@ body {
 Home Page Design
 
 */
-nav {
-    margin-bottom: 2%;
-}
+
+  nav {
+    margin-bottom: 3%;
+  }
+
 .heroImg {
    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("medicinalleaf.jpg");
    height:60vh;
@@ -27,12 +29,14 @@ nav {
     left: 45%;
     color:oldlace;
 }
+h1 {
+font-size:1.4rem;
+}
 
 .hero-button{
     position: absolute;
     transform: translate(-200%, 60%);
 
-    
 }
 
 .gallery {
@@ -42,10 +46,7 @@ nav {
     justify-content: space-between;
     width: 100%;
   }
- 
-  .col{
-      padding:4% 4%;
-  }
+
 .smaller{
     width: 60%;
     border-radius: 50%;
@@ -66,6 +67,12 @@ Login and Thank you page designs
 
 /* media queries */
 @media(max-width: 600px){
+   nav{
+flex-direction: column;
+     }
+    
+
+
     .gallery {
         display:flex;
         flex-direction:column;
@@ -73,7 +80,11 @@ Login and Thank you page designs
         text-align: center;
 
     }
-}
+    #searchBar {
+      display: none;
+    }
+  }
+      
 
 
 
