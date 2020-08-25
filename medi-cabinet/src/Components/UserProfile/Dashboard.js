@@ -1,7 +1,12 @@
+import React from 'react'; 
 import NavBar from '../NavBar';
+import SavedList from './SavedList';
+
 
 
 export default function Dashboard() {
+
+
     return (
         <div className="Dashboard">
           <header>
@@ -10,6 +15,7 @@ export default function Dashboard() {
           <div className="Welcome">  
              <h2>Welcome Username!</h2>
           </div>
+          <SavedList /> 
         </div>
       );
 
@@ -19,4 +25,3 @@ export default function Dashboard() {
 
 
 
-// list of favorite strains

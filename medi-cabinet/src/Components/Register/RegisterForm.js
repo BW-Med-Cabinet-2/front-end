@@ -21,7 +21,7 @@ const initialFormValues = {
 
 let initialErrorValue;
 
-const inputTextFields = ["name", "email", "age", 'username'];
+const inputTextFields = ["name", 'username', "email", "age"];
 
 export default function RegisterForm(props){
 
@@ -122,7 +122,7 @@ export default function RegisterForm(props){
                 setErrorValue={setErrorValue}
                 setSubmitDisabled={setSubmitDisabled}
             />
-                
+                <br />
             <label htmlFor='tos'>Terms and Conditions:
                 <Input
                     id='tos'
@@ -134,6 +134,7 @@ export default function RegisterForm(props){
                 
                 </Input>
             </label>
+            <br /> 
             <label htmlFor='submit'>
                 <Button
                     id='submit'
