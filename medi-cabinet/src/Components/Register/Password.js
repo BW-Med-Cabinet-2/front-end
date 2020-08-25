@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import {Input} from 'reactstrap'
 const inputTextFields = ["password", "confirm"];
 
 function Password({onChange, formValues, setErrorValue, setSubmitDisabled}) {
@@ -8,7 +8,7 @@ function Password({onChange, formValues, setErrorValue, setSubmitDisabled}) {
 
 
     useEffect(() => {
-        if (formValues.password !== formValues.confirm){
+        if (formValues.password !== formValues.confirm || formValues.password === ''){
             setSubmitDisabled(true);
             setPasswordsAreEqual(false);
         }
@@ -54,7 +54,7 @@ function Password({onChange, formValues, setErrorValue, setSubmitDisabled}) {
             > 
                 {item[0].toUpperCase()+item.slice(1)}:
             </label>
-                <input
+                <Input
                     id={item}
                     className={item}
                     type='text'
