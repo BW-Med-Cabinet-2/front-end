@@ -102,7 +102,7 @@ export default function RegisterForm(props){
                 }
             })
             .catch(error => {
-                setSubmitDisabled(false);
+                setSubmitDisabled(true);
             })
     }, [formValues])
 
