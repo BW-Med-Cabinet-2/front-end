@@ -7,7 +7,7 @@ import * as Yup from "yup";
 const initialFormValues = {}
 export default function LoginForm(props){
     
-    const inputTextFields = ["name", "password"];
+    const inputTextFields = ["Name:", "Password:"];
 
     function updateValues(inputName, inputValue){
         setFormValues({...formValues, [inputName]: inputValue});
@@ -22,7 +22,7 @@ export default function LoginForm(props){
     }
 
     return (
-        <Form>
+        <Form> 
             {inputTextFields.map((item, ind) => {
                 return (
             <label
