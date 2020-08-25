@@ -1,5 +1,4 @@
 import React from 'react';
-import RegisterForm from './components/Register/RegisterForm';
 import NavBar from './components/NavBar'; 
 
 import './App.css';
@@ -9,7 +8,7 @@ function App() {
     <div className="App">
       <header>
         <NavBar />
-        <RegisterForm />
+        {/* <SearchBar /> */}
       </header>
     </div>
   );

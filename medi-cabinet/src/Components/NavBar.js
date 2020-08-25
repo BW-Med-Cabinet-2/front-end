@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import RegisterForm from './Register/RegisterForm';
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
+    Button, 
+    Modal, 
+    ModalHeader, 
+    ModalBody, 
+    ModalFooter, 
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    NavbarText
 } from 'reactstrap';
 
 const NavBar = (props) => {
@@ -29,21 +34,31 @@ const NavBar = (props) => {
           <Nav className="mr-auto" navbar>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Options
+                Profile
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu left>
                 <DropdownItem>
-                  Login
+                  <Button color="info">Login 🔓</Button>
                 </DropdownItem>
                 <DropdownItem>
-                    <NavLink>
-                        Register
-                        <RegisterForm />
-                    </NavLink>
+                    <Button color="warning" onClick={toggle}>Register 📝</Button>
+                        <Modal isOpen={isOpen} toggle={toggle}>
+                            <ModalHeader toggle={toggle}>Registration</ModalHeader>
+                                    <ModalBody>
+                                        <RegisterForm />                                      
+                                    </ModalBody>
+                                <ModalFooter>
+                                <Button color="warning" onClick={toggle}>Register</Button>{' '}
+                                <Button color="secondary" onClick={toggle}>Cancel</Button>
+                            </ModalFooter>
+                        </Modal>
+                </DropdownItem>
+                <DropdownItem>
+                  <Button color="primary">Dashboard 👤</Button>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  See all strains 🌿
+                  <Button color="success">See all strains 🌿</Button>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
