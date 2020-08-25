@@ -2,6 +2,9 @@ import React from 'react';
 import RegisterForm from './Components/Register/RegisterForm.js';
 import {Switch, Route, NavLink} from 'react-router-dom';
 import Login from './Components/Login/Login';
+import NavBar from './components/NavBar'; 
+
+
 import './App.css';
 
 function App() {
@@ -16,6 +19,10 @@ function App() {
         </Route>
       </Switch>
 
+      <header>
+        <NavBar />
+        {/* <SearchBar /> */}
+      </header>
     </div>
   );
 }

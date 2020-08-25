@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import Password from './Password';
 
 import registerFormSchema from '../../validation/registerFormSchema'
+import { Form, Input } from 'reactstrap'; 
 
 const initialFormValues = {
     name: '',
@@ -21,6 +22,7 @@ let initialErrorValue;
 const inputTextFields = ["name", "email", "age", 'username'];
 
 //ADD TOS CHECKBOX;
+
 
 export default function RegisterForm(props){
 
@@ -93,16 +95,18 @@ export default function RegisterForm(props){
 
 
     return (
-        <form className="register-form" onSubmit={onSubmit}>
+        <Form className="register-form" onSubmit={onSubmit}>
             {inputTextFields.map((item, ind) => {
                 return (
+            <>
             <label
                 key={`${item}-${ind}`}
                 htmlFor={item}
             > 
                 {item[0].toUpperCase()+item.slice(1)}
 
-                <input
+                <Input
+
                     id={item}
                     className={item}
                     type='text'
@@ -111,8 +115,10 @@ export default function RegisterForm(props){
                     onChange={onChange}
                     placeholder={`Enter ${item[0].toUpperCase()+item.slice(1)}...`}
                 />
-            </label>
-             
+
+             </label>
+             <br></br>
+            </>
                 )
             })}
             <Password
@@ -133,7 +139,6 @@ export default function RegisterForm(props){
                 
                 </input>
             </label>
-
             <label htmlFor='submit'>
                 <button
                     id='submit'
@@ -144,6 +149,7 @@ export default function RegisterForm(props){
                 </button>
                 {errorValue && <div style= {{color: 'red'}}>Passwords Must Match</div> }
             </label>
-        </form>
+        </Form>
+
     )
 }
