@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Form, Input } from 'reactstrap'; 
 import axios from 'axios';
 import * as yup from 'yup';
 
@@ -93,16 +94,15 @@ export default function RegisterForm(props){
 
 
     return (
-        <form className="register-form" onSubmit={onSubmit}>
+
+        <Form onSubmit={onSubmit} className='register-form'>
             {inputTextFields.map((item, ind) => {
                 return (
+            <>
             <label
                 key={`${item}-${ind}`}
-                htmlFor={item}
-            > 
-                {item[0].toUpperCase()+item.slice(1)}
-
-                <input
+                htmlFor={item}> {item}
+                <Input
                     id={item}
                     className={item}
                     type='text'
@@ -111,8 +111,9 @@ export default function RegisterForm(props){
                     onChange={onChange}
                     placeholder={`Enter ${item[0].toUpperCase()+item.slice(1)}...`}
                 />
-            </label>
-             
+             </label>
+             <br></br>
+            </>
                 )
             })}
             <Password
@@ -144,6 +145,6 @@ export default function RegisterForm(props){
                 </button>
                 {errorValue && <div style= {{color: 'red'}}>Passwords Must Match</div> }
             </label>
-        </form>
+        </Form>
     )
 }

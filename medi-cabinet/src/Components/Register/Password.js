@@ -52,12 +52,13 @@ function Password({onChange, formValues, setErrorValue, setSubmitDisabled}) {
         <>
             {inputTextFields.map((item, ind) => {
                 return (
+            <>
             <label
                 key={`${item}-${ind}`}
                 htmlFor={item}
             > 
                 {item[0].toUpperCase()+item.slice(1)}
-
+            </label>
                 <input
                     id={item}
                     className={item}
@@ -67,7 +68,7 @@ function Password({onChange, formValues, setErrorValue, setSubmitDisabled}) {
                     onChange={onChange}
                     placeholder={createPlaceholderText(item)}
                 />
-            </label>
+            </>
             
                 )
             })}
