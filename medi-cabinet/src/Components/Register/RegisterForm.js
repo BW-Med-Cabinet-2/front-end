@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { Form, Input } from 'reactstrap'; 
+import { Form, Input, Button } from 'reactstrap'; 
+
 import axios from 'axios';
 import * as yup from 'yup';
 
@@ -123,25 +124,26 @@ export default function RegisterForm(props){
             />
                 
             <label htmlFor='tos'>Terms and Conditions:
-                <input
+                <Input
                     id='tos'
                     type='checkbox'
                     name='tos'
                     checked={formValues.tos}
                     onChange={onCheckBoxChange}
-                >
+                >{' '}
                 
-                </input>
+                </Input>
             </label>
             <label htmlFor='submit'>
-                <button
+                <Button
                     id='submit'
                     name='submit'
                     disabled={submitDisabled}
                 >
                     Register an Account
-                </button>
+                </Button>
                 {errorValue && <div style= {{color: 'red'}}>{errorValue}</div>}
+
             </label>
         </Form>
     )}
