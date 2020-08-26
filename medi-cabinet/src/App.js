@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Quiz from './Components/Quiz/Quiz';
 import {Switch, Route, NavLink} from 'react-router-dom';
 
@@ -10,12 +10,16 @@ import Dashboard from './Components/UserProfile/Dashboard';
 
 import './App.css';
 
+
 function App() {
+  let [quizResults, setQuizResults] = useState()
+
   return (
     <div className="App">
       <header>
         <NavBar />
-        <Quiz />
+        <Quiz setQuizResults={setQuizResults}/>
+        {quizResults && <Cards quizResults={quizResults}/>}
       </header>
       <div className="homepage">
         <div className="hometext">
