@@ -18,6 +18,9 @@ Home Page Design
 .navbar a {
   color: #d9d9db;
 }
+#break {
+  display: none;
+}
 
 .heroImg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("medicinalleaf.jpg");
@@ -98,7 +101,7 @@ p {
 h4{
   color: #f8f8ff;
 }
-.gallery img {
+.card img {
   border-radius: 50%;
   display: block;
   margin: 0 auto;
@@ -114,6 +117,7 @@ h4{
 
 /* media queries */
 @media(max-width: 600px) {
+  /* Home Page Media Queries */
   .navbar {
     flex-direction: column;
   }
@@ -150,16 +154,70 @@ h4{
     background-size: cover;
     width: 100%;
   }
+  /*About Page Media Queries */
+  .bios {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .card {
+    flex: 75%;
+    padding: 3%;
+    width: 75%;
+    margin: 2%;
+    text-align: center;
+    background: linear-gradient(0.50turn, #0f302e, #f8f8ff, #f8f8ff);
+    justify-content: space-evenly;
+  }
 }
 
 
 
 
 @media(max-width: 800px) {
+  /* Home Page Media Queries */
+   
   .gallery {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     text-align: center;
+  }
+  #searchBar {
+    display: none;
+  }
+  .hero-button {
+    display: none;
+  }
+
+  h5,
+  .col p {
+    text-align: center;
+  }
+
+  .heroImg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+  }
+/* About Page Media Queries */
+  .bios {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .card {
+    flex: 50%;
+    padding: 3%;
+    width: 75%;
+    margin: 2%;
+    text-align: center;
+    background: linear-gradient(0.50turn, #0f302e, #f8f8ff, #f8f8ff);
+    justify-content: space-around;
   }
 }
