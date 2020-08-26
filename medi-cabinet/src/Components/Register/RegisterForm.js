@@ -54,6 +54,7 @@ export default function RegisterForm(props){
     }
     
     function onCheckBoxChange(event){
+        event.stopPropagation();
         const {name, checked} = event.target;
         updateValues(name, checked);
         validateInput(name, checked);

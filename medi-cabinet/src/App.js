@@ -1,5 +1,5 @@
 import React from 'react';
-import Quiz from './components/Quiz/Quiz';
+import Quiz from './Components/Quiz/Quiz';
 import {Switch, Route, NavLink} from 'react-router-dom';
 
 import Cards from './Components/Cards/Cards'; 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Button, Form} from 'reactstrap';
+import {Button, Form, ListGroup, ListGroupItem} from 'reactstrap';
 import Radio from './Radio';
 
 let questionsArray = [
@@ -86,19 +86,30 @@ export default function Quiz(props) {
 
     return (
         <Form onSubmit={onSubmit} className='test'>
+
             {questionsArray.map((item, ind) => { 
                 return (
-                    
                     <label
                     key={`${item.name}-${ind}`}
                     htmlFor={item.name}> {item.question}
                         <br/>
-                        <Radio onChange={onChange} value={1} item={item}/>
-                        <Radio onChange={onChange} value={2} item={item}/>
-                        <Radio onChange={onChange} value={3} item={item}/>
-                        <Radio onChange={onChange} value={4} item={item}/>
-                        <Radio onChange={onChange} value={5} item={item}/>
-                        
+                    <ListGroup horizontal>
+                        <ListGroupItem color='secondary'>
+                            <Radio onChange={onChange} value={1} item={item}/>
+                        </ListGroupItem>
+                        <ListGroupItem color='secondary'>
+                            <Radio onChange={onChange} value={2} item={item}/>
+                        </ListGroupItem>
+                        <ListGroupItem color='secondary'>
+                            <Radio onChange={onChange} value={3} item={item}/>
+                        </ListGroupItem>
+                        <ListGroupItem color='secondary'>
+                            <Radio onChange={onChange} value={4} item={item}/>
+                        </ListGroupItem>
+                        <ListGroupItem color='secondary'>
+                            <Radio onChange={onChange} value={5} item={item}/>
+                        </ListGroupItem>                    
+                    </ListGroup>
                     </label>
                     
                 )
