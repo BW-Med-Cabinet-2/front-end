@@ -18,9 +18,6 @@ Home Page Design
 .navbar a {
   color: #d9d9db;
 }
-#break {
-  display: none;
-}
 
 .heroImg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("medicinalleaf.jpg");
@@ -178,7 +175,6 @@ h4{
 
 @media(max-width: 800px) {
   /* Home Page Media Queries */
-   
   .gallery {
     display: flex;
     flex-direction: column;
@@ -191,7 +187,9 @@ h4{
   .hero-button {
     display: none;
   }
-
+  h1 {
+    font-size: 1.3rem;
+  }
   h5,
   .col p {
     text-align: center;
@@ -203,6 +201,7 @@ h4{
     background-size: cover;
     width: 100%;
   }
+
 /* About Page Media Queries */
   .bios {
     display: flex;
@@ -219,5 +218,35 @@ h4{
     text-align: center;
     background: linear-gradient(0.50turn, #0f302e, #f8f8ff, #f8f8ff);
     justify-content: space-around;
+  }
+}
+
+@media(max-width: 1024px){
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+  }
+  #searchBar {
+    display: none;
+  }
+  .hero-button {
+    position: absolute;
+    transform: translate(-50%, 50%);
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
+  h5,
+  .col p {
+    text-align: center;
+  }
+
+  .heroImg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
   }
 }
