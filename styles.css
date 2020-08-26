@@ -1,7 +1,7 @@
-
-
 body {
-    color:#2e4617;
+  color: #2e4617;
+  background-color: #f8f8ff;
+
 }
 
 
@@ -10,111 +10,153 @@ Home Page Design
 
 */
 
-  .navbar {
-    margin-bottom: 3%;
-    background-color: #02191b;
-  }
+.navbar {
+  margin-bottom: 3%;
+  background-color: #02191b;
+}
 
-  .navbar a {
-    color: #d9d9db;
-  }
+.navbar a {
+  color: #d9d9db;
+}
 
 .heroImg {
-   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("medicinalleaf.jpg");
-   height:60vh;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
-   position: relative;
-}
-.herotext {
-    position: absolute;
-    top: 45%;
-    left: 45%;
-    color:#d9d9db;
-}
-h1 {
-font-size:1.4rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("medicinalleaf.jpg");
+  height: 60vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
-.hero-button{
-    position: absolute;
-    transform: translate(100%, -10%);
+.herotext {
+  text-align: center;
+  position: absolute;
+  top: 45%;
+  left: 40%;
+  color: #d9d9db;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+.hero-button {
+  position: absolute;
+  transform: translate(-50%, 50%);
 
 }
 
 .gallery {
-    display:flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    width: 100%;
-  }
-  .col {
-    margin: 4% 5%;
-    
-  }
-img {
-  margin: 3%;
-}
-.smaller{
-    width: 60%;
-    border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
 }
 
-  
+.col {
+  margin: 4% 5%;
+
+}
+
+img {
+  width: 30%;
+  margin: 1%;
+}
+
+.smaller {
+  width: 60%;
+  border-radius: 50%;
+}
+
+
 /*
 About Page Design
 */
-
-
-
-
-
-/*
-Login and Thank you page designs
-*/
-
-/* media queries */
-@media(max-width: 600px){
-   .navbar {
-flex-direction: column;
-     }
-    
-h1 {
-  font-size: 1rem;
+p {
+  text-align: center;
 }
 
-    .gallery {
-        display:flex;
-        flex-direction:column;
-        flex-wrap:wrap;
-        text-align: center;
+.bios {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
 
-    }
-    #searchBar {
-      display: none;
-    }
-     .btn .hero-button{
-      width: 5%;
-      height: auto;
-    }
-    h5, .col p {
-      text-align: center;
-    }
-    .heroImg{
-      background-position:left;
-    }
+.card {
+  flex: 25%;
+  padding: 3%;
+  width: 40%;
+  margin: 2%;
+  text-align: center;
+  background: linear-gradient(0.50turn, #0f302e, #f8f8ff, #f8f8ff);
+  justify-content: space-between;
+}
+
+.gallery img {
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+
+}
+
+.test {
+  color: white;
+}
+
+
+
+
+/* media queries */
+@media(max-width: 600px) {
+  .navbar {
+    flex-direction: column;
   }
-      
+
+  h1 {
+    font-size: 1rem;
+  }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+
+  }
+
+  #searchBar {
+    display: none;
+  }
+
+  .btn .hero-button {
+    width: 5%;
+    height: auto;
+  }
+
+  h5,
+  .col p {
+    text-align: center;
+  }
+
+  .heroImg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+  }
+}
 
 
 
-@media(max-width: 800px){
-    .gallery {
-        display:flex;
-        flex-direction:column;
-        flex-wrap: nowrap;
-        text-align: center;
- } 
+
+@media(max-width: 800px) {
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+  }
 }
