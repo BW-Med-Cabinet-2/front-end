@@ -95,6 +95,9 @@ p {
   justify-content: space-between;
 }
 
+h4{
+  color: #f8f8ff;
+}
 .gallery img {
   border-radius: 50%;
   display: block;
