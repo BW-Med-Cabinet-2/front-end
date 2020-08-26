@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-header {
-  background-color: black;
-  color: whitesmoke; 
-}
-
 .homepage {
   margin: 5vh; 
   padding: 5vh;
@@ -45,4 +40,37 @@ header {
 
 .saved-list {
 
+}
+
+
+
+.Welcome {
+  background-image: url('https://images.unsplash.com/photo-1568616462106-73f240ce78be?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80');
+  background-position: 50% 15%;
+  padding: 10vh;
+  margin: 5vh; 
+}
+
+
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 50vh; 
+  margin-bottom: 5vh; 
+}
+
+.cardimg {
+  width: 25vh; 
+  height: 25vh;
+  padding: 2vh;
+  align-self: center;
+}
+
+.card-type {
+  align-self: center;
 }

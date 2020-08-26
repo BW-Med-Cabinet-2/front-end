@@ -1,11 +1,10 @@
 import React from 'react';
-import Quiz from './Components/Quiz/Quiz';
 import {Switch, Route, NavLink} from 'react-router-dom';
 
+import Dashboard from './Components/UserProfile/Dashboard'; 
 import Cards from './Components/Cards/Cards'; 
 import NavBar from './Components/NavBar'; 
 import SearchForm from './Components/SearchForm';
-import Dashboard from './Components/UserProfile/Dashboard'; 
 
 
 import './App.css';
@@ -15,8 +14,11 @@ function App() {
     <div className="App">
       <header>
         <NavBar />
-        <Quiz />
       </header>
+
+      <Route path='/dashboard' component={Dashboard}/>
+      <Route path='/viewall' component={Cards}/>
+
       <div className="homepage">
         <div className="hometext">
           <h1 >Let's help find what you need 🌿</h1>
@@ -26,7 +28,7 @@ function App() {
           <SearchForm />
         </div>
       </div>
-      {/* <Dashboard /> */}
+      {/* <Cards />  */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import axiosWithAuth from './utils/axiosWithAuth';
 
 export default function SearchForm() {
 

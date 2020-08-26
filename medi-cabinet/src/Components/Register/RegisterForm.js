@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Form, Input, Button, Label, FormGroup} from 'reactstrap'; 
+import { useHistory } from 'react-router-dom';
 
-import axios from 'axios';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import * as yup from 'yup';
 
 import Password from './Password';
@@ -23,12 +24,16 @@ let initialErrorValue;
 
 const inputTextFields = ["name", 'username', "email", "age"];
 
+
+
 export default function RegisterForm(props){
 
     const [formValues, setFormValues] = useState(initialFormValues);
     const [errorValue, setErrorValue] = useState(initialErrorValue);
     const [submitDisabled, setSubmitDisabled] = useState(true);
     
+    const history = useHistory(); 
+
     useEffect(() => {
 
         registerFormSchema.isValid(formValues)
@@ -62,7 +67,8 @@ export default function RegisterForm(props){
     
     function onSubmit(event){
         event.preventDefault();
-        setUser(formValues)
+        setUser(formValues);
+        history.push('/dashboard')
     }
     
     function validateInput(name, value){
@@ -82,7 +88,8 @@ export default function RegisterForm(props){
     const [user, setUser] = useState({});
     
     useEffect(() => {
-        axios.post("https://reqres.in/api/users", user)
+        axiosWithAuth()
+            .post("/api/users", user)
             .then(response => {
                 console.log(response.data);
                 let test = document.createElement('div');
