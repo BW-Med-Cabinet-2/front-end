@@ -63,7 +63,18 @@ export default function SearchForm() {
               Indica
             </Label>
           </FormGroup>
-                <br /> 
+               
+          <FormGroup>
+            <Label for="exampleSelect" className="formtext"></Label>
+            <Input type="select" name="select" id="exampleSelect">
+              <option>Number of Results</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+              <option>25</option>
+              <option>30</option>
+            </Input>
+          </FormGroup>
 
           <Button block className="searchbutton" color="success">SEARCH</Button>
         </Form>

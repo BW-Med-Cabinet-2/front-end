@@ -23,6 +23,10 @@ export default function LoginForm(props){
     }
 
 
+    function login (e) {
+        
+    }
+
     return (
         <Form> 
             {inputTextFields.map((item, ind) => {

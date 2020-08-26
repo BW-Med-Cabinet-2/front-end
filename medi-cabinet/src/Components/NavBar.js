@@ -79,7 +79,7 @@ const NavBar = (props) => {
                         </Modal>
                 </DropdownItem>
                 <DropdownItem>
-                  <Button color="primary" onClick={DashBoardRoute, toggle}>Dashboard 👤</Button>
+                  <Button color="primary" onClick={toggle}>Dashboard 👤</Button>
                 </DropdownItem>
                 <DropdownItem>
                   <Button color="secondary" onClick={quizToggle}>Take our Quiz ❓</Button>
