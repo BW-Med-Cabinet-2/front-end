@@ -2,3 +2,47 @@
   text-align: center;
 }
 
+header {
+  background-color: black;
+  color: whitesmoke; 
+}
+
+.homepage {
+  margin: 5vh; 
+  padding: 5vh;
+  background-image: url("https://images.unsplash.com/photo-1520224855316-280b2e6afca1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80");
+  background-position: 50% 45%; 
+}
+
+.hometext {
+ color: whitesmoke; 
+ text-shadow: 2px 4px 5px #000000;
+}
+
+#helptext {
+  margin: auto; 
+  padding-bottom: 5vh; 
+  
+}
+
+.SearchForm {
+  width: 30%; 
+  margin: auto; 
+  padding: 5vh; 
+  border: 1px solid grey; 
+  background-color: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.formtext {
+  
+}
+
+.searchbutton {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.saved-list {
+
+}

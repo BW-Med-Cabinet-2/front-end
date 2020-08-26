@@ -3,7 +3,7 @@ import {Card as StrapCard, Badge, CardHeader, CardBody,
     ListGroup, CardImg} from 'reactstrap';
 
 
-export default function Card({name, ailments, type}){
+export default function Card({name, type, ailments}){
 
     function randomImage(){
         let ranNum = Math.floor(Math.random() * 10);

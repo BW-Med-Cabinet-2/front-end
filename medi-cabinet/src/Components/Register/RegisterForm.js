@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Form, Input, Button, Label, FormGroup} from 'reactstrap'; 
+
 import axios from 'axios';
 import * as yup from 'yup';
 
@@ -20,7 +21,7 @@ const initialFormValues = {
 
 let initialErrorValue;
 
-const inputTextFields = ["name", "email", "age", 'username'];
+const inputTextFields = ["name", 'username', "email", "age"];
 
 export default function RegisterForm(props){
 
@@ -143,6 +144,6 @@ export default function RegisterForm(props){
                     Register an Account
                 </Button>
                 {errorValue && <div style= {{color: 'red'}}>{errorValue}</div>}
-   
+
         </Form>
     )}
