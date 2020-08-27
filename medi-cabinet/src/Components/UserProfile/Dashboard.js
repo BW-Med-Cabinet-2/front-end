@@ -1,6 +1,6 @@
 import React from 'react'; 
-import NavBar from '../NavBar';
 import SavedList from './SavedList';
+import Cards from '../Cards/Cards';
 
 
 
@@ -9,13 +9,11 @@ export default function Dashboard() {
 
     return (
         <div className="Dashboard">
-          <header>
-            <NavBar />
-          </header>
           <div className="Welcome">  
-             <h2>Welcome Username!</h2>
+             <h2 className="welcomeText">Welcome Username!</h2>
           </div>
           <SavedList /> 
+          <Cards />
         </div>
       );
 

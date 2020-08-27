@@ -6,7 +6,7 @@ import Cards from '../Cards/Cards';
 function SavedList({ list }) {
   return (
     <div className="saved-list">
-      <h3>Saved Movies:</h3>
+      <h3>Saved Strains:</h3>
       <Cards /> 
     </div>
   );

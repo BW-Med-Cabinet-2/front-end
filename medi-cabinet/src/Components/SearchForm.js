@@ -1,13 +1,16 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import axiosWithAuth from './utils/axiosWithAuth';
 
 export default function SearchForm() {
 
 
     const onSubmit = (e) => {
         e.preventDefault();
-
+        axiosWithAuth()
+            .get('/api/strains')
+            .then((res) => (res.data))
+            .catch((err) => console.log(err))
 
 
     }
@@ -19,7 +22,7 @@ export default function SearchForm() {
           <FormGroup>
             <Label for="StrainName" className="formtext">Strain Name: </Label>
             <Input 
-                type="textarea" 
+                type="text" 
                 name="text" 
                 id="Text" 
                 placeholder="Enter all or part of a strain name..."
@@ -63,24 +66,22 @@ export default function SearchForm() {
               Indica
             </Label>
           </FormGroup>
-                <br /> 
+               
+          <FormGroup>
+            <Label for="exampleSelect" className="formtext"></Label>
+            <Input type="select" name="select" id="exampleSelect">
+              <option>Number of Results</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+              <option>25</option>
+              <option>30</option>
+            </Input>
+          </FormGroup>
 
           <Button block className="searchbutton" color="success">SEARCH</Button>
         </Form>
         </>
       );
-    
-    
-
-    
-
-
-
-    // search button 
-    //     renders list below
-
-
-
-
 
 }

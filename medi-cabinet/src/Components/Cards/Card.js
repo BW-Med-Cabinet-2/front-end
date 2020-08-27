@@ -1,6 +1,10 @@
 import React from 'react';
 import {Card as StrapCard, Badge, CardHeader, CardBody,
-    ListGroup, CardImg} from 'reactstrap';
+    ListGroup, CardDeck, CardFooter, Button} from 'reactstrap';
+import { useParams, useHistory } from "react-router-dom";
+import axiosWithAuth from '../utils/axiosWithAuth';
+
+
 
 
 export default function Card({name, type, ailment, flavors, positive_effects}){
@@ -8,6 +12,9 @@ export default function Card({name, type, ailment, flavors, positive_effects}){
 let ailments = ailment.split(', ');
 let flavorArray = flavors.split(', ')
 let positiveArray = positive_effects.split(', ')
+const history = useHistory(); 
+const params = useParams(); 
+
 
     function randomImage(){
         let ranNum = Math.floor(Math.random() * 10);
@@ -18,9 +25,21 @@ let positiveArray = positive_effects.split(', ')
         return `http://localhost:3000/assets/${imgName[ranNum]}.jpg`
     }
 
+
+    const deleteMovie = (e) => {
+        e.preventDefault();
+        axiosWithAuth()   
+          .delete(`/api/strain/${name}`)
+          .then((res) =>{
+            history.push(`/dashboard`);
+          })
+          .catch((err) => console.log(err));
+      }
+
     console.log(randomImage());
 
     return (
+
         <StrapCard className="card">
             <CardHeader tag="h3" className="card-name">{name}</CardHeader>
             <CardImg src={randomImage()} alt='' width="20%" />
@@ -41,5 +60,6 @@ let positiveArray = positive_effects.split(', ')
             <Badge color='warning'>{type}</Badge>
             </CardBody>
         </StrapCard>
+
     )
 }
