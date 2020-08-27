@@ -5,20 +5,20 @@ import Radio from './Radio';
 
 let questionsArray = [
     {
-        name: "floral",
-        question: "I can't get enough of the smell of flowers."
+        name: "berry",
+        question: "I enjoy fresh berries in my cereal."
     },
     {
         name: "citrus",
         question: "I enjoy the flavor and aroma of citrus fruits."
     },
     {
-        name: "gasoline",
+        name: "diesel",
         question: "I find the smell of the gas station oddly appealing."
     },
     {
-        name: "anxiety",
-        question: "I suffer from bouts of anxiety frequently."
+        name: "depression",
+        question: "I suffer from bouts of depression frequently."
     },
     {
         name: "pain",
@@ -43,10 +43,10 @@ let questionsArray = [
 ]
 
 const initialFormValues = {
-    floral: 0,
+    berry: 0,
     citrus: 0,
-    gasoline: 0,
-    anxiety: 0,
+    diesel: 0,
+    depression: 0,
     pain: 0,
     insomnia: 0,
     energetic: 0,
@@ -57,8 +57,12 @@ const initialFormValues = {
 
 export default function Quiz(props) {
     
+    let setQuizResults = props.setQuizResults;
+    console.log(setQuizResults);
+
     let [formValues, setFormValues] = useState(initialFormValues);
     let [quizObject, setQuizObject] = useState(initialFormValues);
+    let [postJSON, setPostJSON] = useState(JSON.stringify({symptoms: 'insomnia', results: '5'}));
 
     function onChange (event) {
         const {name, value} = event.target;
@@ -67,22 +71,40 @@ export default function Quiz(props) {
 
     function onSubmit (event){
         event.preventDefault();
-        submitQuizObj(quizObject)
+        submitQuizObj(postJSON)
     }
 
     function submitQuizObj (quizObj){
-        axios.post('https:/reqres.in/api/users', quizObj)
+        console.log(quizObj);
+        axios.post('https://cors-anywhere.herokuapp.com/hold-your-turnips.herokuapp.com/predict', quizObj)
             .then(response => {
-                let testText = JSON.stringify(response.data);
-                let test = document.createElement('div');
-                document.querySelector('.test').appendChild(test)
-                    test.textContent = testText;
+                console.log(response.data);
+                setQuizResults(response.data)
             })
     }
+
+    function orderResults (quizObj){
+        if (quizObj){
+            let newArray = Object.entries(quizObj).sort((a, b) => a[1] - b[1])
+                .filter(item => item[1] > 2).map(item => item[0]).reverse();
+            
+            return setPostJSON({symptoms: newArray.join(', '), results: 5})      
+    }
+    }
+
+    
+
 
     useEffect(() => {
         setQuizObject(formValues)
     }, [formValues])
+
+    useEffect(() => {
+        orderResults(quizObject)
+    }, [quizObject])
+
+
+
 
     return (
         <Form onSubmit={onSubmit} className='test'>
@@ -115,7 +137,9 @@ export default function Quiz(props) {
                 )
                 })
             }
+            <div>
             <Button color="primary">Submit</Button>
+            </div>
         </Form>
     )
 }

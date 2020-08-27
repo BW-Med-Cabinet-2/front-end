@@ -1,14 +1,19 @@
 import React from 'react';
 import {Card as StrapCard, Badge, CardHeader, CardBody,
-    ListGroup, CardDeck, CardFooter, Button} from 'reactstrap';
+    ListGroup, CardDeck, CardFooter, CardImg, Button} from 'reactstrap';
 import { useParams, useHistory } from "react-router-dom";
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 
 
-export default function Card({name, type, ailments}){
-    const history = useHistory(); 
-    const params = useParams(); 
+
+export default function Card({name, type, ailment, flavors, positive_effects}){
+
+let ailments = ailment.split(', ');
+let flavorArray = flavors.split(', ')
+let positiveArray = positive_effects.split(', ')
+const history = useHistory(); 
+const params = useParams(); 
 
 
     function randomImage(){
@@ -36,22 +41,31 @@ export default function Card({name, type, ailments}){
     console.log(randomImage());
 
     return (
-        
-            <StrapCard className="card">
-                <CardHeader tag="h3" className="card-name">{name}</CardHeader>
-                <img className="cardimg" src={randomImage()} alt='' width="20%" />
-                <CardBody className="card-type">
-                    <ListGroup horizontal className="card-ailments">
-                        {ailments.map((item, ind) => {
-                            return <Badge color='success' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
-                        })}
-                    </ListGroup>
-                <Badge color='warning'>{type}</Badge>
-                </CardBody>
-                <CardFooter>
-                    <Button color="danger" onClick={deleteCard}>Delete</Button>
-                </CardFooter>
-            </StrapCard>
-        
+
+
+        <StrapCard className="card">
+            <CardHeader tag="h3" className="card-name">{name}</CardHeader>
+            <CardImg src={randomImage()} alt='' width="20%" />
+            <CardBody className="card-type">
+                <h4 className="ailments">Ailments</h4>
+                {ailments.map((item, ind) => {
+                    return <Badge color='success' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
+                })}
+                <h4 className="flavor-heading">Flavors</h4>
+                {flavorArray && flavorArray.map((item, ind) => {
+                    return <Badge color='warning' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
+                })}
+                <h4 className="positives-heading">Positive Effects</h4>
+                {positiveArray && positiveArray.map((item, ind) => {
+                    return <Badge color='success' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
+                })}
+            <h4 className="type">Type</h4>
+            <Badge color='warning'>{type}</Badge>
+            </CardBody>
+              <CardFooter>
+                 <Button color="danger" onClick={deleteCard}>Delete</Button>
+               </CardFooter>
+        </StrapCard>
+
     )
 }

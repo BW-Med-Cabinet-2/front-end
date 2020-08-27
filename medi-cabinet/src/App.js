@@ -1,5 +1,6 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, {useState} from 'react';
+import Quiz from './Components/Quiz/Quiz';
+import {Switch, Route, NavLink} from 'react-router-dom';
 
 import PrivateRoute from './Components/utils/PrivateRoute';
 import Dashboard from './Components/UserProfile/Dashboard';
@@ -9,15 +10,26 @@ import SearchForm from './Components/SearchForm';
 
 import './App.css';
 
+
 function App() {
+  let [quizResults, setQuizResults] = useState()
+
   return (
     <div className="App">
       <header>
-        <NavBar />
+        <NavBar setQuizResults={setQuizResults}/>
+
+        {quizResults && <Cards quizResults={quizResults}/>}
+
       </header>
 
-      <Route path='/dashboard' component={Dashboard} />
-      <Route path='/viewall' component={Cards} />
+
+      <Route path='/dashboard' component={Dashboard}/>
+      <Route path='/viewall' render={(quizResults) => (
+        <Cards {...quizResults}/>
+      )}
+      />
+
 
       <div className="homepage">
         <div className="hometext">

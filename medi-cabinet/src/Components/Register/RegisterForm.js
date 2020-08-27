@@ -81,11 +81,21 @@ export default function RegisterForm(props){
         })
     }
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState();
     
     useEffect(() => {
+
+        if (user) {
+
+            let createUserProps = {};
+            createUserProps.username = user.username;
+            createUserProps.primaryemail = user.email;
+            createUserProps.password = user.password;
+          
         axiosWithAuth()
-            .post("/api/register", user)
+
+            .post("http://cors-anywhere.herokuapp.com/drkush.herokuapp.com/createnewuser", createUserProps)
+
             .then(response => {
                 console.log(response.data);
                 let test = document.createElement('div');
@@ -93,7 +103,7 @@ export default function RegisterForm(props){
                 document.querySelector(".register-form").appendChild(test);
                 
             })
-
+        }
             
     },[user])
 
@@ -145,6 +155,7 @@ export default function RegisterForm(props){
                     <Label htmlFor='tos'> Terms of Service</Label>
             </FormGroup>
             
+            <div>
                 <Button
                     id='submit'
                     name='submit'
@@ -153,6 +164,8 @@ export default function RegisterForm(props){
                     Register an Account
                 </Button>
                 {errorValue && <div style= {{color: 'red'}}>{errorValue}</div>}
+            </div>
 
         </Form>
-    )}
+    )
+}
