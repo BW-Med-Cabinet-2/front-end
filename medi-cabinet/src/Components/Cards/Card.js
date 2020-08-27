@@ -25,12 +25,19 @@ let positiveArray = positive_effects.split(', ')
             <CardHeader tag="h3" className="card-name">{name}</CardHeader>
             <CardImg src={randomImage()} alt='' width="20%" />
             <CardBody className="card-type">
-                <ListGroup horizontal className="card-ailments">
-                    {ailments.map((item, ind) => {
-                        return <Badge color='success' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
-                    })}
-                </ListGroup>
-            
+                <h4 className="ailments">Ailments</h4>
+                {ailments.map((item, ind) => {
+                    return <Badge color='success' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
+                })}
+                <h4 className="flavor-heading">Flavors</h4>
+                {flavorArray && flavorArray.map((item, ind) => {
+                    return <Badge color='warning' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
+                })}
+                <h4 className="positives-heading">Positive Effects</h4>
+                {positiveArray && positiveArray.map((item, ind) => {
+                    return <Badge color='success' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
+                })}
+            <h4 className="type">Type</h4>
             <Badge color='warning'>{type}</Badge>
             </CardBody>
         </StrapCard>

@@ -5,8 +5,8 @@ import Radio from './Radio';
 
 let questionsArray = [
     {
-        name: "floral",
-        question: "I can't get enough of the smell of flowers."
+        name: "berry",
+        question: "I enjoy fresh berries in my cereal."
     },
     {
         name: "citrus",
@@ -17,8 +17,8 @@ let questionsArray = [
         question: "I find the smell of the gas station oddly appealing."
     },
     {
-        name: "anxiety",
-        question: "I suffer from bouts of anxiety frequently."
+        name: "depression",
+        question: "I suffer from bouts of depression frequently."
     },
     {
         name: "pain",
@@ -43,10 +43,10 @@ let questionsArray = [
 ]
 
 const initialFormValues = {
-    floral: 0,
+    berry: 0,
     citrus: 0,
     diesel: 0,
-    anxiety: 0,
+    depression: 0,
     pain: 0,
     insomnia: 0,
     energetic: 0,
@@ -76,7 +76,7 @@ export default function Quiz(props) {
 
     function submitQuizObj (quizObj){
         console.log(quizObj);
-        axios.post('http://hold-your-turnips.herokuapp.com/predict', quizObj)
+        axios.post('https://cors-anywhere.herokuapp.com/hold-your-turnips.herokuapp.com/predict', quizObj)
             .then(response => {
                 console.log(response.data);
                 setQuizResults(response.data)
@@ -137,7 +137,9 @@ export default function Quiz(props) {
                 )
                 })
             }
+            <div>
             <Button color="primary">Submit</Button>
+            </div>
         </Form>
     )
 }
