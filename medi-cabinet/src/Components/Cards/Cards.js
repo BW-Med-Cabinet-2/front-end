@@ -18,6 +18,7 @@ const dummyData = [
         type: 'hybrid'
     }
 ]
+
 export default function Cards({quizResults}){
 console.log(quizResults)
 let returnData

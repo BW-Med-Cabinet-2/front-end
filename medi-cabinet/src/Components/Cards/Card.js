@@ -25,8 +25,10 @@ const params = useParams();
         return `http://localhost:3000/assets/${imgName[ranNum]}.jpg`
     }
 
+    
 
-    const deleteMovie = (e) => {
+
+    const deleteCard = (e) => {
         e.preventDefault();
         axiosWithAuth()   
           .delete(`/api/strain/${name}`)
@@ -39,6 +41,7 @@ const params = useParams();
     console.log(randomImage());
 
     return (
+
 
         <StrapCard className="card">
             <CardHeader tag="h3" className="card-name">{name}</CardHeader>
@@ -59,6 +62,9 @@ const params = useParams();
             <h4 className="type">Type</h4>
             <Badge color='warning'>{type}</Badge>
             </CardBody>
+              <CardFooter>
+                 <Button color="danger" onClick={deleteCard}>Delete</Button>
+               </CardFooter>
         </StrapCard>
 
     )

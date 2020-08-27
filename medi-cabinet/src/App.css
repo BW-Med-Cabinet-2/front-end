@@ -55,6 +55,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  padding-top: 5vh;
 }
 
 .card {

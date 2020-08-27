@@ -65,11 +65,7 @@ export default function RegisterForm(props){
         validateInput(name, checked);
     }
     
-    function onSubmit(event){
-        event.preventDefault();
-        setUser(formValues);
-        history.push('/dashboard')
-    }
+  
     
     function validateInput(name, value){
         
@@ -97,6 +93,7 @@ export default function RegisterForm(props){
             createUserProps.password = user.password;
           
         axiosWithAuth()
+
             .post("http://cors-anywhere.herokuapp.com/drkush.herokuapp.com/createnewuser", createUserProps)
 
             .then(response => {
@@ -104,15 +101,20 @@ export default function RegisterForm(props){
                 let test = document.createElement('div');
                 test.textContent = JSON.stringify(response.data);
                 document.querySelector(".register-form").appendChild(test);
+                
             })
         }
             
     },[user])
 
+    function onSubmit(event){
+        event.preventDefault();
+        history.push('/dashboard')
+    }
 
     return (
 
-        <Form onSubmit={onSubmit} className='register-form'>
+        <Form className='register-form' onSubmit={onSubmit}>
             {inputTextFields.map((item, ind) => {
                 return (
             <>
