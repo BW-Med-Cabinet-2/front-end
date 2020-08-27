@@ -19,11 +19,12 @@ const dummyData = [
     }
 ]
 export default function Cards(props){
- const weed = props
+//  const weed = props
+//  console.log(props); 
 
     return (
         <div className="cards-container">
-            {weed.map((item, ind) => {
+            {dummyData.map((item, ind) => {
                 return <Card key={`${item.name}-${ind}`} {...item}/>
             })}
         </div>

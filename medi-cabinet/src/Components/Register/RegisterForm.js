@@ -85,21 +85,26 @@ export default function RegisterForm(props){
     
     useEffect(() => {
         axiosWithAuth()
-            .post("/api/users", user)
+            .post("/api/register", user)
             .then(response => {
                 console.log(response.data);
                 let test = document.createElement('div');
                 test.textContent = JSON.stringify(response.data);
                 document.querySelector(".register-form").appendChild(test);
+                
             })
 
             
     },[user])
 
+    function onSubmit(event){
+        event.preventDefault();
+        history.push('/dashboard')
+    }
 
     return (
 
-        <Form className='register-form'>
+        <Form className='register-form' onSubmit={onSubmit}>
             {inputTextFields.map((item, ind) => {
                 return (
             <>

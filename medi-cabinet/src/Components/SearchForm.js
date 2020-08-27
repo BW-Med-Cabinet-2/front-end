@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import axios from 'axios';
 import { fetchStrains } from '../actions'; 
 import Cards from './Cards/Cards'; 
 import { connect } from 'react-redux'; 
@@ -8,12 +7,12 @@ import { connect } from 'react-redux';
 function SearchForm(props) {
 
     const initialFormValues = {
-        name: '',
-        ailment: '',
-        sativa: '',
-        hybrid: '',
-        indica: '',
-        results: '',
+        'name': '',
+        'ailment': '',
+        'sativa': '',
+        'hybrid': '',
+        'indica': '',
+        'results': '',
     };
 
     const weedData = '';
@@ -28,7 +27,7 @@ function SearchForm(props) {
         e.preventDefault();
         var dataArray = Object.keys(form).map(val => form[val]);
         var stringyweed = dataArray.join(' ').toLowerCase(); 
-        props.fetchStrains(stringyweed); 
+        props.fetchStrains(form); 
 
     }
 

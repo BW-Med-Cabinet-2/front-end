@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RegisterForm from './Register/RegisterForm';
-import LoginForm from './Login/Login';
+import Login from './Login/Login';
 import {Switch, Route, useHistory, Link } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute'; 
 import {
@@ -40,10 +40,7 @@ const NavBar = (props) => {
     history.push('/viewall'); 
   }; 
 
-  function onSubmit(event){
-    event.preventDefault();
-    history.push('/dashboard')
-}
+
 
   return (
     <div>
@@ -62,12 +59,12 @@ const NavBar = (props) => {
                     <Modal isOpen={isLoginOpen} toggle={logToggle}>
                       <ModalHeader toggle={logToggle}>Login</ModalHeader>
                           <ModalBody>
-                           <LoginForm />                                      
+                           <Login />                                      
                           </ModalBody>
-                      <ModalFooter>
+                      {/* <ModalFooter>
                         <Button color="warning" onClick={logToggle}>Login</Button>{' '}
                         <Button color="secondary" onClick={logToggle}>Cancel</Button>
-                      </ModalFooter>
+                      </ModalFooter> */}
                     </Modal>
                 </DropdownItem>
                 <DropdownItem>
@@ -77,10 +74,10 @@ const NavBar = (props) => {
                               <ModalBody>
                                   <RegisterForm />                                      
                               </ModalBody>
-                              <ModalFooter>
-                        <Button color="warning" type="submit" onClick={toggle} onSubmit={onSubmit}>Register</Button>{' '}
+                              {/* <ModalFooter>
+                        <Button color="warning" type="submit" onClick={toggle}>Register</Button>{' '}
                         <Button color="secondary" onClick={toggle}>Cancel</Button>
-                      </ModalFooter>
+                      </ModalFooter> */}
                         </Modal>
                 </DropdownItem>
                 <DropdownItem>

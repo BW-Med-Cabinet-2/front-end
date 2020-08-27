@@ -20,8 +20,10 @@ export default function Card({name, type, ailments}){
         return `http://localhost:3000/assets/${imgName[ranNum]}.jpg`
     }
 
+    
 
-    const deleteMovie = (e) => {
+
+    const deleteCard = (e) => {
         e.preventDefault();
         axiosWithAuth()   
           .delete(`/api/strain/${name}`)
@@ -47,7 +49,7 @@ export default function Card({name, type, ailments}){
                 <Badge color='warning'>{type}</Badge>
                 </CardBody>
                 <CardFooter>
-                    <Button color="danger" onClick={deleteMovie}>Delete</Button>
+                    <Button color="danger" onClick={deleteCard}>Delete</Button>
                 </CardFooter>
             </StrapCard>
         

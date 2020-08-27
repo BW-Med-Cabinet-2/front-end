@@ -1,7 +1,7 @@
 import { FETCH_STRAINS_START, FETCH_STRAINS_SUCCESS, FETCH_STRAINS_FAIL } from '../actions';
 
 const initialState = {
-    weedData: '',
+    weedData: [],
 }
 
 const strainReducer = (state = initialState, action) => {
