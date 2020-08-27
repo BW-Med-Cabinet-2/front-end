@@ -7,7 +7,10 @@ export default function SearchForm() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
+        axiosWithAuth()
+            .get('/api/strains')
+            .then((res) => (res.data))
+            .catch((err) => console.log(err))
 
 
     }
@@ -19,7 +22,7 @@ export default function SearchForm() {
           <FormGroup>
             <Label for="StrainName" className="formtext">Strain Name: </Label>
             <Input 
-                type="textarea" 
+                type="text" 
                 name="text" 
                 id="Text" 
                 placeholder="Enter all or part of a strain name..."
@@ -80,18 +83,5 @@ export default function SearchForm() {
         </Form>
         </>
       );
-    
-    
-
-    
-
-
-
-    // search button 
-    //     renders list below
-
-
-
-
 
 }

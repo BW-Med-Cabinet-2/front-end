@@ -24,7 +24,7 @@ export default function Card({name, type, ailments}){
     const deleteMovie = (e) => {
         e.preventDefault();
         axiosWithAuth()   
-          .delete(`/api/strain/${params.id}`)
+          .delete(`/api/strain/${name}`)
           .then((res) =>{
             history.push(`/dashboard`);
           })

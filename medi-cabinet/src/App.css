@@ -12,6 +12,7 @@
 .hometext {
  color: whitesmoke; 
  text-shadow: 2px 4px 5px #000000;
+ font-family: monospace; 
 }
 
 #helptext {
@@ -29,26 +30,23 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.formtext {
-  
-}
-
 .searchbutton {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-
-.saved-list {
-
-}
-
-
 
 .Welcome {
   background-image: url('https://images.unsplash.com/photo-1568616462106-73f240ce78be?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80');
   background-position: 50% 15%;
   padding: 10vh;
   margin: 5vh; 
+}
+
+.welcomeText {
+  color: whitesmoke; 
+  text-shadow: 2px 4px 5px #000000;
+  font-weight: bolder;
+  font-size: 3.5rem;
+  font-family: monospace; 
 }
 
 

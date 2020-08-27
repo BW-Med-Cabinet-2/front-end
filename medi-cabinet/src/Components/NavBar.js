@@ -47,7 +47,7 @@ const NavBar = (props) => {
   return (
     <div>
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/" >Medi-Cabinet➕</NavbarBrand>
+        <NavbarBrand href="/" >MedCabinet➕</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -79,7 +79,7 @@ const NavBar = (props) => {
                         </Modal>
                 </DropdownItem>
                 <DropdownItem>
-                  <Button color="primary" onClick={toggle}>Dashboard 👤</Button>
+                  <Button color="primary" onClick={DashBoardRoute}>Dashboard 👤</Button>
                 </DropdownItem>
                 <DropdownItem>
                   <Button color="secondary" onClick={quizToggle}>Take our Quiz ❓</Button>
