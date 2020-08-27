@@ -18,14 +18,13 @@ function App() {
       <header>
         <NavBar setQuizResults={setQuizResults}/>
 
-        <Quiz setQuizResults={setQuizResults}/>
         {quizResults && <Cards quizResults={quizResults}/>}
 
       </header>
 
       <Route path='/dashboard' component={Dashboard}/>
       <Route path='/viewall' render={(quizResults) => (
-        <Cards quizResults={quizResults}/>
+        <Cards {...quizResults}/>
       )}
       />
 

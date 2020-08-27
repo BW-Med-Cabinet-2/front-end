@@ -20,11 +20,13 @@ const dummyData = [
 ]
 export default function Cards({quizResults}){
 console.log(quizResults)
-let returnData = quizResults.recommendations.strain_recommendations
-
+let returnData
+if (quizResults){
+    returnData = quizResults.recommendations.strain_recommendations
+}
     return (
         <div className="cards-container">
-            {returnData.map((item, ind) => {
+            {returnData && returnData.map((item, ind) => {
                 return <Card key={`${item.name}-${ind}`} {...item}/>
             })}
         </div>
