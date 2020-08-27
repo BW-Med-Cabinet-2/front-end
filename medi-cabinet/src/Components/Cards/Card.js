@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card as StrapCard, Badge, CardHeader, CardBody,
-    ListGroup, CardDeck, CardFooter, Button} from 'reactstrap';
+    ListGroup, CardDeck, CardFooter, CardImg, Button} from 'reactstrap';
 import { useParams, useHistory } from "react-router-dom";
 import axiosWithAuth from '../utils/axiosWithAuth';
 
