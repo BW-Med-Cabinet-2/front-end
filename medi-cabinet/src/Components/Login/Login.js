@@ -23,8 +23,10 @@ export default function LoginForm(props){
     }
 
 
-    function login (e) {
+    function login(e) {
+        e.preventDefault(); 
         
+
     }
 
     return (

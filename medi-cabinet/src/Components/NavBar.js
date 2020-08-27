@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import RegisterForm from './Register/RegisterForm';
 import LoginForm from './Login/Login';
-import {Switch, Route, useHistory } from 'react-router-dom';
+import {Switch, Route, useHistory, Link } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute'; 
 import {
     Button, 
@@ -36,13 +36,14 @@ const NavBar = (props) => {
   const quizToggle = () => setIsQuizOpen(!isQuizOpen);
 
 
-  const DashBoardRoute = () => {
-    history.push('/dashboard'); 
-  }; 
-
   const ViewAllRoute = () => {
     history.push('/viewall'); 
   }; 
+
+  function onSubmit(event){
+    event.preventDefault();
+    history.push('/dashboard')
+}
 
   return (
     <div>
@@ -76,10 +77,16 @@ const NavBar = (props) => {
                               <ModalBody>
                                   <RegisterForm />                                      
                               </ModalBody>
+                              <ModalFooter>
+                        <Button color="warning" type="submit" onClick={toggle} onSubmit={onSubmit}>Register</Button>{' '}
+                        <Button color="secondary" onClick={toggle}>Cancel</Button>
+                      </ModalFooter>
                         </Modal>
                 </DropdownItem>
                 <DropdownItem>
-                  <Button color="primary" onClick={DashBoardRoute}>Dashboard 👤</Button>
+                  <Link to="/dashboard">
+                  <Button color="primary" >Dashboard 👤</Button>
+                  </Link>
                 </DropdownItem>
                 <DropdownItem>
                   <Button color="secondary" onClick={quizToggle}>Take our Quiz ❓</Button>

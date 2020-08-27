@@ -65,11 +65,7 @@ export default function RegisterForm(props){
         validateInput(name, checked);
     }
     
-    function onSubmit(event){
-        event.preventDefault();
-        setUser(formValues);
-        history.push('/dashboard')
-    }
+  
     
     function validateInput(name, value){
         
@@ -103,7 +99,7 @@ export default function RegisterForm(props){
 
     return (
 
-        <Form onSubmit={onSubmit} className='register-form'>
+        <Form className='register-form'>
             {inputTextFields.map((item, ind) => {
                 return (
             <>

@@ -44,7 +44,6 @@ export default function Card({name, type, ailments}){
                             return <Badge color='success' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
                         })}
                     </ListGroup>
-                
                 <Badge color='warning'>{type}</Badge>
                 </CardBody>
                 <CardFooter>

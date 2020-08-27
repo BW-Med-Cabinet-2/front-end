@@ -13,7 +13,6 @@ export default function Dashboard() {
              <h2 className="welcomeText">Welcome Username!</h2>
           </div>
           <SavedList /> 
-          <Cards />
         </div>
       );
 
