@@ -79,7 +79,8 @@ export default function Quiz(props) {
         axios.post('https://cors-anywhere.herokuapp.com/hold-your-turnips.herokuapp.com/predict', quizObj)
             .then(response => {
                 console.log(response.data);
-                setQuizResults(response.data)
+                setQuizResults(response.data);
+                props.quizToggle();
             })
     }
 

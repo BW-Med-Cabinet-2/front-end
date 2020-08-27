@@ -7,7 +7,7 @@ function onLoad(event){
     let {target} = event
     anime({
         targets: target,
-        rotate: 720,
+        rotate: 1080,
         easing: 'cubicBezier(.5, .05, .1, .3)',
         duration: 5000,
         loop: true,

@@ -86,7 +86,7 @@ const NavBar = (props) => {
                     <Modal isOpen={isQuizOpen} toggle={quizToggle}>
                       <ModalHeader toggle={quizToggle}>Answer these questions</ModalHeader>
                           <ModalBody>
-                           <Quiz setQuizResults={props.setQuizResults}/>                                      
+                           <Quiz setQuizResults={props.setQuizResults} quizToggle={quizToggle}/>                                      
                           </ModalBody>
                     </Modal>
                 </DropdownItem>
