@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import Card from '../Cards/Card';
 
 const dummyData = [
     {
@@ -18,12 +18,13 @@ const dummyData = [
         type: 'hybrid'
     }
 ]
-export default function Cards(props){
-
+export default function Cards({quizResults}){
+console.log(quizResults)
+let returnData = quizResults.recommendations.strain_recommendations
 
     return (
         <div className="cards-container">
-            {dummyData.map((item, ind) => {
+            {returnData.map((item, ind) => {
                 return <Card key={`${item.name}-${ind}`} {...item}/>
             })}
         </div>
