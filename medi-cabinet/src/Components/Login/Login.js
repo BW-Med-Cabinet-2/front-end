@@ -1,49 +1,69 @@
-import React, {useState} from 'react';
-import { Form, Input } from 'reactstrap'; 
-import axiosWithAuth from '../utils/axiosWithAuth'; 
-import axios from "axios";
-import * as Yup from "yup";
+import React from "react";
+import axiosWithAuth from '../utils/axiosWithAuth';
+import { Form, Input, Button } from 'reactstrap';
 
 
-const initialFormValues = {}
-export default function LoginForm(props){
-    
-    const inputTextFields = ["Name:", "Password:"];
 
-    function updateValues(inputName, inputValue){
-        setFormValues({...formValues, [inputName]: inputValue});
+class Login extends React.Component {
+    state = {
+        credentials: {
+            email: '',
+            password: '',
+        }
     }
 
-    const [formValues, setFormValues] = useState(initialFormValues);
+    handleChange = (e) => {
+        this.setState({
+            credentials: {
+                ...this.state.credentials,
+                [e.target.name]: e.target.value
+            }
+        });
+    };
 
-
-    function onChange(event) {
-        const {name, value} = event.target;
-        updateValues(name, value);
+    login = (e) => {
+        console.log(this.state.credentials)
+        e.preventDefault();
+        axiosWithAuth()
+            .post('/api/login', this.state.credentials)
+            .then((res) => {
+                console.log(res);
+                localStorage.setItem('token', res.data.payload);
+                this.props.history.push('/dashboard');
+            })
+            .catch((err) => console.log(err));
     }
 
+    render() {
+        return (
+            <>
+                <Form onSubmit={this.login}>
+                    <h2>Login</h2>
 
-    function login (e) {
-        
-    }
+                    <label>Email:
+            <Input
+                            type='text'
+                            name='email'
+                            value={this.state.credentials.email}
+                            onChange={this.handleChange}
+                        />
+                    </label>
 
-    return (
-        <Form> 
-            {inputTextFields.map((item, ind) => {
-                return (
-            <label
-                key={`${item}-${ind}`}
-                htmlFor={item}> {item}
-                <Input
-                    id={item}
-                    type='text'
-                    name={item}
-                    value={formValues[item]}
-                    onChange={onChange}
-                />
-             </label>
-                )
-            })}
-        </Form>
-    )
+                    <label>Password:
+            <Input
+                            type='text'
+                            name='password'
+                            value={this.state.credentials.password}
+                            onChange={this.handleChange}
+                        />
+                    </label>
+
+                    <Button>Log in</Button>
+
+                </Form>
+            </>
+        );
+    };
 }
+
+export default Login;

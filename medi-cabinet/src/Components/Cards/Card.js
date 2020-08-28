@@ -1,48 +1,56 @@
-import React from 'react';
-import {Card as StrapCard, Badge, CardHeader, CardBody,
-    ListGroup, CardDeck, CardFooter, CardImg, Button} from 'reactstrap';
-import { useParams, useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import {
+    Card as StrapCard, Badge, CardHeader, CardBody,
+    CardFooter, CardImg, Button, Container
+} from 'reactstrap';
+import { useHistory } from "react-router-dom";
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 
 
 
-export default function Card({name, type, ailment, flavors, positive_effects}){
+export default function Card(props) {
 
-let ailments = ailment.split(', ');
-let flavorArray = flavors.split(', ')
-let positiveArray = positive_effects.split(', ')
-const history = useHistory(); 
-const params = useParams(); 
+    const { addToSavedList, savedList, setSavedList, ...strainProps } = props
+    const { name, ailment, flavors, positive_effects, type } = strainProps
 
+    let ailments = ailment.split(', ');
+    let flavorArray = flavors.split(', ')
+    let positiveArray = positive_effects.split(', ')
+    const history = useHistory();
 
-    function randomImage(){
+    function randomImage() {
         let ranNum = Math.floor(Math.random() * 10);
 
         const imgName = ['cw-1', 'am-1', 'aw-1', 'el-1', 'jc-1',
-                         'js-1', 'ms-1', 'n-1', 'n-2', 'rl-1']
+            'js-1', 'ms-1', 'n-1', 'n-2', 'rl-1']
 
         return `https://elegant-heisenberg-a84559.netlify.app/assets/${imgName[ranNum]}.jpg`
     }
 
 
-    const deleteMovie = (e) => {
-        e.preventDefault();
-        axiosWithAuth()   
-          .delete(`/api/strain/${name}`)
-          .then((res) =>{
-            history.push(`/dashboard`);
-          })
-          .catch((err) => console.log(err));
-      }
+    const saveCard = (e) => {
+        addToSavedList(strainProps);
+        console.log(strainProps); 
+    }
+
+    const deleteCard = (e) => {
+        setSavedList(savedList.filter((item) => {
+            console.log(item, 'item');
+            console.log(strainProps, 'strainProps');
+            return item.name !== strainProps.name
+        }))
+        console.log(savedList, 'Deleted Card'); 
+    }
 
     console.log(randomImage());
 
     return (
 
+
         <StrapCard className="card">
             <CardHeader tag="h3" className="card-name">{name}</CardHeader>
-            <CardImg src={randomImage()} alt='' width="20%" />
+            <img className="cardimg" src={randomImage()} alt='' />
             <CardBody className="card-type">
                 <h4 className="ailments">Ailments</h4>
                 {ailments.map((item, ind) => {
@@ -56,9 +64,13 @@ const params = useParams();
                 {positiveArray && positiveArray.map((item, ind) => {
                     return <Badge color='success' pill key={`${name}-${item}-${ind}`}>{item}</Badge>
                 })}
-            <h4 className="type">Type</h4>
-            <Badge color='warning'>{type}</Badge>
+                <h4 className="type">Type</h4>
+                <Badge color='warning'>{type}</Badge>
             </CardBody>
+            <CardFooter>
+                <Button color="success" onClick={saveCard}>Save</Button>
+                <Button color="danger" onClick={deleteCard}>Delete</Button>
+            </CardFooter>
         </StrapCard>
 
     )

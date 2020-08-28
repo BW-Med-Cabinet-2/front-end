@@ -3,11 +3,11 @@ import { NavLink, Link } from 'react-router-dom';
 import { Button } from 'reactstrap'; 
 import Cards from '../Cards/Cards'; 
 
-function SavedList({ list }) {
+function SavedList({ savedList, setSavedList }) {
   return (
     <div className="saved-list">
       <h3>Saved Strains:</h3>
-      <Cards /> 
+        <Cards savedList={savedList} setSavedList={setSavedList}/>
     </div>
   );
 }
