@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../Cards/Card';
+import Loading from '../Loading/Loading'
 
 const dummyData = [
     {
@@ -33,9 +34,11 @@ export default function Cards({ quizResults, searchResults, addToSavedList, save
     }
     return (
         <div className="cards-container">
-            {returnData && returnData.map((item, ind) => {
+
+            {returnData 
+                  ? returnData.map((item, ind) => {
                 return <Card key={`${item.name}-${ind}`} {...item} addToSavedList={addToSavedList} savedList={savedList} setSavedList={setSavedList}/>
-            })}
+            }) : <Loading />}
         </div>
     )
 }

@@ -25,7 +25,7 @@ export default function Card(props) {
         const imgName = ['cw-1', 'am-1', 'aw-1', 'el-1', 'jc-1',
             'js-1', 'ms-1', 'n-1', 'n-2', 'rl-1']
 
-        return `http://localhost:3000/assets/${imgName[ranNum]}.jpg`
+        return `https://elegant-heisenberg-a84559.netlify.app/assets/${imgName[ranNum]}.jpg`
     }
 
 
