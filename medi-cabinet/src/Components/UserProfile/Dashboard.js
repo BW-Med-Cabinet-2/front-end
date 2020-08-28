@@ -4,7 +4,7 @@ import Cards from '../Cards/Cards';
 
 
 
-const Dashboard = ({ list }) => {
+const Dashboard = ({ list, setSavedList }) => {
   
 
 
@@ -13,7 +13,7 @@ const Dashboard = ({ list }) => {
       <div className="Welcome">
         <h2 className="welcomeText">Welcome to your Dashboard!</h2>
       </div>
-      <SavedList list={list}/>
+      <SavedList savedList={list} setSavedList={setSavedList}/>
     </div>
   );
 

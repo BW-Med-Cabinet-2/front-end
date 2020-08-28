@@ -11,7 +11,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 export default function Card(props) {
 
-    const { addToSavedList, ...strainProps } = props
+    const { addToSavedList, savedList, setSavedList, ...strainProps } = props
     const { name, ailment, flavors, positive_effects, type } = strainProps
 
     let ailments = ailment.split(', ');
@@ -30,14 +30,17 @@ export default function Card(props) {
 
 
     const saveCard = (e) => {
-        // copy the card info into the local storage Container
         addToSavedList(strainProps);
         console.log(strainProps); 
     }
 
     const deleteCard = (e) => {
-        e.preventDefault();
-        // remove the card from the local storage container
+        setSavedList(savedList.filter((item) => {
+            console.log(item, 'item');
+            console.log(strainProps, 'strainProps');
+            return item.name !== strainProps.name
+        }))
+        console.log(savedList, 'Deleted Card'); 
     }
 
     console.log(randomImage());

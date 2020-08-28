@@ -33,13 +33,13 @@ function App() {
       <header>
         <NavBar setQuizResults={setQuizResults} />
 
-        {quizResults && <Cards quizResults={quizResults} addToSavedList={addToSavedList}/>}
-        {searchResults && <Cards searchResults={searchResults} addToSavedList={addToSavedList}/>}
+        {quizResults && <Cards quizResults={quizResults} addToSavedList={addToSavedList} savedList={savedList} setSavedList={setSavedList}/>}
+        {searchResults && <Cards searchResults={searchResults} addToSavedList={addToSavedList} savedList={savedList} setSavedList={setSavedList}/>}
 
       </header>
 
 
-      <Route path='/dashboard'><Dashboard  list={savedList} /></Route> 
+      <Route path='/dashboard'><Dashboard  list={savedList} setSavedList={setSavedList}/></Route> 
       <Route path='/results' render={(quizResults, searchResults) => (
         <>
           <Cards {...quizResults} />
