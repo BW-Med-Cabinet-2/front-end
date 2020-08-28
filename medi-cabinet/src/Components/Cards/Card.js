@@ -9,13 +9,15 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 
 
-export default function Card({ name, type, ailment, flavors, positive_effects, addToSavedList }) {
+export default function Card(props) {
+
+    const { addToSavedList, ...strainProps } = props
+    const { name, ailment, flavors, positive_effects, type } = strainProps
 
     let ailments = ailment.split(', ');
     let flavorArray = flavors.split(', ')
     let positiveArray = positive_effects.split(', ')
     const history = useHistory();
-    const [strain, setStrain] = useState(null);
 
     function randomImage() {
         let ranNum = Math.floor(Math.random() * 10);
@@ -29,7 +31,8 @@ export default function Card({ name, type, ailment, flavors, positive_effects, a
 
     const saveCard = (e) => {
         // copy the card info into the local storage Container
-        addToSavedList(strain);
+        addToSavedList(strainProps);
+        console.log(strainProps); 
     }
 
     const deleteCard = (e) => {

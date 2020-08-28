@@ -7,10 +7,7 @@ function SavedList({ list }) {
   return (
     <div className="saved-list">
       <h3>Saved Strains:</h3>
-        {/* local storage container with saved strains */}
-        {/* {list.map(strain => {
-          return <span>{strain.name}</span>
-        })} */}
+        <Cards list={list}/>
     </div>
   );
 }

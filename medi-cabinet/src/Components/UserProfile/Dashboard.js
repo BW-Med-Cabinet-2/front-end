@@ -4,12 +4,8 @@ import Cards from '../Cards/Cards';
 
 
 
-const Dashboard = () => {
-  const [savedList, setSavedList] = useState([]);
-
-  const addToSavedList = strain => {
-    setSavedList([...savedList, strain])
-  };
+const Dashboard = ({ list }) => {
+  
 
 
   return (
@@ -17,7 +13,7 @@ const Dashboard = () => {
       <div className="Welcome">
         <h2 className="welcomeText">Welcome to your Dashboard!</h2>
       </div>
-      <SavedList addToSavedList={addToSavedList} />
+      <SavedList list={list}/>
     </div>
   );
 

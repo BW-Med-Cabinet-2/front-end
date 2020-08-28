@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Quiz from './Components/Quiz/Quiz';
 import { Switch, Route, NavLink } from 'react-router-dom';
 
@@ -15,18 +15,31 @@ function App() {
   let [quizResults, setQuizResults] = useState()
   let [searchResults, setSearchResults] = useState()
 
+  let initialSavedStrains = []; 
+  if (window.localStorage.getItem('Saved Strains')){
+    initialSavedStrains = [window.localStorage.getItem('Saved Strains')]
+  }
+  const [savedList, setSavedList] = useState([]);
+
+  const addToSavedList = strain => {
+    setSavedList([...savedList, strain])
+    console.log(savedList); 
+  };
+
+
+
   return (
     <div className="App">
       <header>
         <NavBar setQuizResults={setQuizResults} />
 
-        {quizResults && <Cards quizResults={quizResults} />}
-        {searchResults && <Cards searchResults={searchResults} />}
+        {quizResults && <Cards quizResults={quizResults} addToSavedList={addToSavedList}/>}
+        {searchResults && <Cards searchResults={searchResults} addToSavedList={addToSavedList}/>}
 
       </header>
 
 
-      <Route path='/dashboard' component={Dashboard} />
+      <Route path='/dashboard'><Dashboard  list={savedList} /></Route> 
       <Route path='/results' render={(quizResults, searchResults) => (
         <>
           <Cards {...quizResults} />
@@ -46,6 +59,7 @@ function App() {
           <SearchForm setSearchResults={setSearchResults} />
         </div>
       </div>
+      {window.localStorage.setItem('Saved Strains', JSON.stringify(savedList))}
     </div>
   );
 }

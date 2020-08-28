@@ -19,8 +19,8 @@ const dummyData = [
     }
 ]
 
-export default function Cards({ quizResults, searchResults }) {
-    console.log(quizResults)
+export default function Cards({ quizResults, searchResults, addToSavedList, list }) {
+    // console.log(quizResults)
     let returnData
     if (quizResults) {
         returnData = quizResults.recommendations.strain_recommendations
@@ -28,11 +28,13 @@ export default function Cards({ quizResults, searchResults }) {
         returnData = searchResults.recommendations.strain_recommendations
     } else if (quizResults && searchResults) {
         returnData = quizResults.recommendations.strain_recommendations + searchResults.recommendations.strain_recommendations
+    } else if (list !== []) {
+        returnData = list
     }
     return (
         <div className="cards-container">
             {returnData && returnData.map((item, ind) => {
-                return <Card key={`${item.name}-${ind}`} {...item} />
+                return <Card key={`${item.name}-${ind}`} {...item} addToSavedList={addToSavedList}/>
             })}
         </div>
     )
