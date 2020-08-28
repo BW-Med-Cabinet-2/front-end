@@ -3,12 +3,14 @@ import { NavLink, Link } from 'react-router-dom';
 import { Button } from 'reactstrap'; 
 import Cards from '../Cards/Cards'; 
 
-function SavedList({ strains }) {
+function SavedList({ list }) {
   return (
     <div className="saved-list">
       <h3>Saved Strains:</h3>
-      {/* {strains.map(strain)} */}
-      <Cards /> 
+        {/* local storage container with saved strains */}
+        {/* {list.map(strain => {
+          return <span>{strain.name}</span>
+        })} */}
     </div>
   );
 }

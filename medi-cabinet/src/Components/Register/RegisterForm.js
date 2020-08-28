@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { Form, Input, Button, Label, FormGroup} from 'reactstrap'; 
+import React, { useState, useEffect } from 'react';
+import { Form, Input, Button, Label, FormGroup } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -26,20 +26,20 @@ const inputTextFields = ["name", 'username', "email", "age"];
 
 
 
-export default function RegisterForm(props){
+export default function RegisterForm(props) {
 
     const [formValues, setFormValues] = useState(initialFormValues);
     const [errorValue, setErrorValue] = useState(initialErrorValue);
     const [submitDisabled, setSubmitDisabled] = useState(true);
-    
-    const history = useHistory(); 
+
+    const history = useHistory();
 
     useEffect(() => {
 
         registerFormSchema.isValid(formValues)
             .then(valid => {
                 setSubmitDisabled(!valid);
-     
+
             })
             .catch(error => {
                 setSubmitDisabled(true);
@@ -48,41 +48,41 @@ export default function RegisterForm(props){
 
 
 
-    function updateValues(inputName, inputValue){
-        setFormValues({...formValues, [inputName]: inputValue});
+    function updateValues(inputName, inputValue) {
+        setFormValues({ ...formValues, [inputName]: inputValue });
     }
-    
+
     function onChange(event) {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         updateValues(name, value);
         validateInput(name, value);
     }
-    
-    function onCheckBoxChange(event){
+
+    function onCheckBoxChange(event) {
         event.stopPropagation();
-        const {name, checked} = event.target;
+        const { name, checked } = event.target;
         updateValues(name, checked);
         validateInput(name, checked);
     }
-    
-  
-    
-    function validateInput(name, value){
-        
+
+
+
+    function validateInput(name, value) {
+
         yup.reach(registerFormSchema, name)
-        .validate(value)
-        .then(() => {
-            setErrorValue('');
-        })
-        .catch(error => {
-            setSubmitDisabled(true);
-            console.log(error);
-            setErrorValue(error.errors[0]);
-        })
+            .validate(value)
+            .then(() => {
+                setErrorValue('');
+            })
+            .catch(error => {
+                setSubmitDisabled(true);
+                console.log(error);
+                setErrorValue(error.errors[0]);
+            })
     }
 
     const [user, setUser] = useState();
-    
+
     useEffect(() => {
 
         if (user) {
@@ -91,23 +91,23 @@ export default function RegisterForm(props){
             createUserProps.username = user.username;
             createUserProps.primaryemail = user.email;
             createUserProps.password = user.password;
-          
-        axiosWithAuth()
 
-            .post("http://cors-anywhere.herokuapp.com/drkush.herokuapp.com/createnewuser", createUserProps)
+            axiosWithAuth()
 
-            .then(response => {
-                console.log(response.data);
-                let test = document.createElement('div');
-                test.textContent = JSON.stringify(response.data);
-                document.querySelector(".register-form").appendChild(test);
-                
-            })
+                .post("http://cors-anywhere.herokuapp.com/drkush.herokuapp.com/createnewuser", createUserProps)
+
+                .then(response => {
+                    console.log(response.data);
+                    let test = document.createElement('div');
+                    test.textContent = JSON.stringify(response.data);
+                    document.querySelector(".register-form").appendChild(test);
+
+                })
         }
-            
-    },[user])
 
-    function onSubmit(event){
+    }, [user])
+
+    function onSubmit(event) {
         event.preventDefault();
         history.push('/dashboard')
     }
@@ -117,22 +117,22 @@ export default function RegisterForm(props){
         <Form className='register-form' onSubmit={onSubmit}>
             {inputTextFields.map((item, ind) => {
                 return (
-            <>
-            <label
-                key={`${item}-${ind}`}
-                htmlFor={item}> {item[0].toUpperCase()+item.slice(1)}{': '}
-                <Input
-                    id={item}
-                    className={item}
-                    type='text'
-                    name={item}
-                    value={formValues[item]}
-                    onChange={onChange}
-                    placeholder={`Enter ${item[0].toUpperCase()+item.slice(1)}...`}
-                />
-             </label>
-             <br></br>
-            </>
+                    <>
+                        <label
+                            key={`${item}-${ind}`}
+                            htmlFor={item}> {item[0].toUpperCase() + item.slice(1)}{': '}
+                            <Input
+                                id={item}
+                                className={item}
+                                type='text'
+                                name={item}
+                                value={formValues[item]}
+                                onChange={onChange}
+                                placeholder={`Enter ${item[0].toUpperCase() + item.slice(1)}...`}
+                            />
+                        </label>
+                        <br></br>
+                    </>
                 )
             })}
             <Password
@@ -142,19 +142,19 @@ export default function RegisterForm(props){
                 setSubmitDisabled={setSubmitDisabled}
             />
             <FormGroup check>
-                
-                    <Input
-                        id='tos'
-                        type='checkbox'
-                        name='tos'
-                        checked={formValues.tos}
-                        onChange={onCheckBoxChange}
-                    >
+
+                <Input
+                    id='tos'
+                    type='checkbox'
+                    name='tos'
+                    checked={formValues.tos}
+                    onChange={onCheckBoxChange}
+                >
                     Terms of Service
                     </Input>
-                    <Label htmlFor='tos'> Terms of Service</Label>
+                <Label htmlFor='tos'> Terms of Service</Label>
             </FormGroup>
-            
+
             <div>
                 <Button
                     id='submit'
@@ -163,7 +163,7 @@ export default function RegisterForm(props){
                 >
                     Register an Account
                 </Button>
-                {errorValue && <div style= {{color: 'red'}}>{errorValue}</div>}
+                {errorValue && <div style={{ color: 'red' }}>{errorValue}</div>}
             </div>
 
         </Form>

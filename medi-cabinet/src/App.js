@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Quiz from './Components/Quiz/Quiz';
-import {Switch, Route, NavLink} from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 
 import PrivateRoute from './Components/utils/PrivateRoute';
 import Dashboard from './Components/UserProfile/Dashboard';
@@ -13,22 +13,28 @@ import './App.css';
 
 function App() {
   let [quizResults, setQuizResults] = useState()
+  let [searchResults, setSearchResults] = useState()
 
   return (
     <div className="App">
       <header>
-        <NavBar setQuizResults={setQuizResults}/>
+        <NavBar setQuizResults={setQuizResults} />
 
-        {quizResults && <Cards quizResults={quizResults}/>}
+        {quizResults && <Cards quizResults={quizResults} />}
+        {searchResults && <Cards searchResults={searchResults} />}
 
       </header>
 
 
-      <Route path='/dashboard' component={Dashboard}/>
-      <Route path='/viewall' render={(quizResults) => (
-        <Cards {...quizResults}/>
+      <Route path='/dashboard' component={Dashboard} />
+      <Route path='/results' render={(quizResults, searchResults) => (
+        <>
+          <Cards {...quizResults} />
+          <Cards {...searchResults} />
+        </>
       )}
       />
+      {/* <Route path='/viewall' render={<Cards />}/>  */}
 
 
       <div className="homepage">
@@ -37,7 +43,7 @@ function App() {
           <p id="helptext">Fill out what you can in the form below and click SEARCH to see a list of recommended strains</p>
         </div>
         <div className="SearchForm">
-          <SearchForm />
+          <SearchForm setSearchResults={setSearchResults} />
         </div>
       </div>
     </div>

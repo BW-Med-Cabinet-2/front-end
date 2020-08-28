@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { fetchStrains } from '../actions'; 
-import Cards from './Cards/Cards'; 
-import { connect } from 'react-redux'; 
+import { fetchStrains } from '../actions';
+import Cards from './Cards/Cards';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 function SearchForm(props) {
 
     const initialFormValues = {
         'name': '',
         'ailment': '',
-        'sativa': '',
-        'hybrid': '',
-        'indica': '',
-        'results': '',
+        // 'sativa': '',
+        // 'hybrid': '',
+        // 'indica': '',
+        // 'results': '',
     };
 
     const weedData = '';
+
+    let setSearchResults = props.setSearchResults;
 
     const [form, setForm] = useState(initialFormValues);
 
@@ -23,17 +26,26 @@ function SearchForm(props) {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
+    function objectHandler(quizObj) {
+        axios.post('https://cors-anywhere.herokuapp.com/hold-your-turnips.herokuapp.com/predict', quizObj)
+            .then(response => {
+                console.log(response.data);
+                setSearchResults(response.data)
+            })
+    }
+
     const onSubmit = (e) => {
         e.preventDefault();
-        var dataArray = Object.keys(form).map(val => form[val]);
-        var stringyweed = dataArray.join(' ').toLowerCase(); 
-        props.fetchStrains(form); 
+        let quizSymptoms = Object.values(form).join(', ');
+        console.log(quizSymptoms);
+        objectHandler({ symptoms: quizSymptoms, results: 10 })
+        props.fetchStrains(form);
 
     }
 
     return (
         <>
-            {weedData.length > 0 ? <Cards weed={weedData}/> :
+            {weedData.length > 0 ? <Cards weed={weedData} /> :
                 <Form onSubmit={onSubmit}>
 
                     <FormGroup>
@@ -73,24 +85,25 @@ function SearchForm(props) {
                         </Input>
                     </FormGroup>
 
-                    <FormGroup check>
+                    {/* <FormGroup check>
                         <Label check>
                             <Input type="checkbox" name="sativa" value="sativa" onChange={changeHandler} />{' '}
-Sativa
-</Label>
+                        Sativa
+                        </Label>
                         <br />
                         <Label check>
                             <Input type="checkbox" name="hybrid" value="hybrid" onChange={changeHandler} />{' '}
-Hybrid
-</Label>
+                        Hybrid
+                        </Label>
                         <br />
                         <Label check>
                             <Input type="checkbox" name="indica" value="indica" onChange={changeHandler} />{' '}
-Indica
-</Label>
-                    </FormGroup>
+                        Indica
+                        </Label>
+                    </FormGroup> */}
+                    <br />
 
-                    <FormGroup>
+                    {/* <FormGroup>
                         <Label for="exampleSelect" className="formtext"></Label>
                         <Input type="select" name="results" id="exampleSelect" onChange={changeHandler}>
                             <option>Number of Results</option>
@@ -100,7 +113,7 @@ Indica
                             <option>25</option>
                             <option>30</option>
                         </Input>
-                    </FormGroup>
+                    </FormGroup> */}
 
                     <Button block className="searchbutton" color="success">SEARCH</Button>
                 </Form>
